@@ -27,7 +27,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            //db.Configuration.ProxyCreationEnabled = false;
             User user = db.Users.Find(id);
             if (user == null)
             {
