@@ -32,7 +32,7 @@ namespace IPLManagementSystemMVC.Controllers
             return View();
         }
         [HttpPost] //works when submit button is clicked
-        public ActionResult InsertUserRole(User userRolesData)
+        public ActionResult InsertUserRole(UserRole userRolesData)
         {
             using (HttpClient client = new HttpClient())
             {

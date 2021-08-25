@@ -173,13 +173,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\UserMVC\Index.cshtml" />
     <Content Include="Views\UserMVC\InsertUser.cshtml" />
-    <Content Include="Views\UserMVC\DeleteUser.cshtml" />
     <Content Include="Views\UserMVC\UpdateUser.cshtml" />
+    <Content Include="Views\RoleMVC\Index.cshtml" />
+    <Content Include="Views\RoleMVC\UpdateRole.cshtml" />
+    <Content Include="Views\RoleMVC\InsertRole.cshtml" />
+    <Content Include="Views\UserRoleMVC\Index.cshtml" />
+    <Content Include="Views\UserRoleMVC\InsertUserRole.cshtml" />
+    <Content Include="Views\UserRoleMVC\UpdateUserRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RoleMVC\" />
-    <Folder Include="Views\UserRoleMVC\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
