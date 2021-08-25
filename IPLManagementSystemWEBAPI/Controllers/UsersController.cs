@@ -19,7 +19,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            //db.Configuration.ProxyCreationEnabled = false;
             return db.Users;
         }
 
@@ -41,7 +41,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(int id, User user)
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            //db.Configuration.ProxyCreationEnabled = false;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -77,7 +77,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            //db.Configuration.ProxyCreationEnabled = false;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -108,7 +108,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            //db.Configuration.ProxyCreationEnabled = false;
             User user = db.Users.Find(id);
             if (user == null)
             {
@@ -123,7 +123,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            //db.Configuration.ProxyCreationEnabled = false;
             if (disposing)
             {
                 db.Dispose();

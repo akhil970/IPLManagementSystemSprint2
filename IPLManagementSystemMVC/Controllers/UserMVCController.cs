@@ -13,5 +13,6 @@ namespace IPLManagementSystemMVC.Controllers
         {
             return View();
         }
+
     }
 }
