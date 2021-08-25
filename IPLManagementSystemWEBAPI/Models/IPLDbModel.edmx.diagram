@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7131348504e44479bbf7513924c6a2f9" Name="Diagram1">
+        <EntityTypeShape EntityType="IPLDbModel.AllStatistic" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.Match" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.News" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.Player" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.PlayerPhoto" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.Role" Width="1.5" PointX="5.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.Schedule" Width="1.5" PointX="6" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.Speciality" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.sysdiagram" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.Team" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.Ticket" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.TicketCategory" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.UserRole" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.User" Width="1.5" PointX="5.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPLDbModel.Venue" Width="1.5" PointX="3.75" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="IPLDbModel.fk_Statistics_TeamId" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_Match_TeamOneId" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_Match_TeamTwoId" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_Match_VenueId" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_news_matchid" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_ticket_matchid" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_player_photoid" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_player_speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_player_teamid" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_userroles_roleid" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_schedule_venueid" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_ticket_categoryid" ManuallyRouted="false" />
+        <AssociationConnector Association="IPLDbModel.fk_userroles_userid" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
