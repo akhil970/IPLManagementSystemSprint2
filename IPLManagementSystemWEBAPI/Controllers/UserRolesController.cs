@@ -78,9 +78,16 @@ namespace IPLManagementSystemWEBAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            db.UserRoles.Add(userRole);
-            db.SaveChanges();
+            try
+            {
+                db.UserRoles.Add(userRole);
+                db.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ModelState);
+            }
+            
 
             return CreatedAtRoute("DefaultApi", new { id = userRole.Id }, userRole);
         }
