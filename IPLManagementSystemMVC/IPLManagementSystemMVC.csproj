@@ -126,9 +126,11 @@
     <Compile Include="Controllers\AllStatisticsMVCController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsMVCController.cs" />
+    <Compile Include="Controllers\PlayerMVCController.cs" />
     <Compile Include="Controllers\PlayerPhotoMVCController.cs" />
     <Compile Include="Controllers\RoleMVCController.cs" />
     <Compile Include="Controllers\ScheduleMVCController.cs" />
+    <Compile Include="Controllers\SpecialityMVCController.cs" />
     <Compile Include="Controllers\UserMVCController.cs" />
     <Compile Include="Controllers\UserRoleMVCController.cs" />
     <Compile Include="Controllers\VenueMVCController.cs" />
@@ -216,6 +218,17 @@
     <Content Include="Views\VenueMVC\UpdateVenue.cshtml" />
     <Content Include="Views\VenueMVC\DeleteVenue.cshtml" />
     <Content Include="Views\PlayerPhotoMVC\Index.cshtml" />
+    <Content Include="Views\PlayerPhotoMVC\InsertPhoto.cshtml" />
+    <Content Include="Views\PlayerPhotoMVC\UpdatePhoto.cshtml" />
+    <Content Include="Views\PlayerPhotoMVC\DeletePhoto.cshtml" />
+    <Content Include="Views\PlayerMVC\Index.cshtml" />
+    <Content Include="Views\PlayerMVC\InsertPlayer.cshtml" />
+    <Content Include="Views\PlayerMVC\UpdatePlayer.cshtml" />
+    <Content Include="Views\PlayerMVC\DeletePlayer.cshtml" />
+    <Content Include="Views\SpecialityMVC\Index.cshtml" />
+    <Content Include="Views\SpecialityMVC\InsertSpeciality.cshtml" />
+    <Content Include="Views\SpecialityMVC\UpdateSpeciality.cshtml" />
+    <Content Include="Views\SpecialityMVC\DeleteSpeciality.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

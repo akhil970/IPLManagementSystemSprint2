@@ -9,6 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class VenueMVCController : Controller
     {
+        [OutputCache(Duration = 60, VaryByParam = "none")]
         // GET: VenueMVC
         public ActionResult Index()
         {

@@ -9,6 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class UserRoleMVCController : Controller
     {
+        [OutputCache(Duration = 60, VaryByParam = "none")]
         // GET: UserMVC
         //To get user details in a desired format specified in its view
         public ActionResult Index()

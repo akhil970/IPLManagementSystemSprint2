@@ -9,6 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class ScheduleMVCController : Controller
     {
+        [OutputCache(Duration = 60, VaryByParam = "none")]
         // GET: ScheduleMVC
         public ActionResult Index()
         {

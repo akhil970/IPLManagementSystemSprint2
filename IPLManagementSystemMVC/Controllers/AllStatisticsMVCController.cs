@@ -9,6 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class AllStatisticsMVCController : Controller
     {
+        [OutputCache(Duration = 60, VaryByParam = "none")]
         // GET: AllStatisticsMVC
         public ActionResult Index() 
         {

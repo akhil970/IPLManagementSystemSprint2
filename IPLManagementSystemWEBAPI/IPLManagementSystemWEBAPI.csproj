@@ -170,6 +170,7 @@
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Controllers\SpecialityController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TicketCategoriesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />

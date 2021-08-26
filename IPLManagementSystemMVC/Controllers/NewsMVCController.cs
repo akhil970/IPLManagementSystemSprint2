@@ -9,6 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class NewsMVCController : Controller
     {
+        [OutputCache(Duration = 60, VaryByParam = "none")]
         public ActionResult Index()
         {
             List<News> news = new List<News>();

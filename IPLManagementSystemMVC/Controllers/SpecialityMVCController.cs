@@ -3,43 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using IPLManagementSystemMVC.Models;
 using System.Net.Http;
+using IPLManagementSystemMVC.Models;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class PlayerPhotoMVCController : Controller
+    public class SpecialityMVCController : Controller
     {
-        [OutputCache(Duration = 60, VaryByParam = "none")]
-        // GET: PlayerPhotoMVC
+        [OutputCache (Duration = 60, VaryByParam = "none")]
+        // GET: SpecialityMVC
         public ActionResult Index()
         {
-            List<PlayerPhoto> photo = new List<PlayerPhoto>();
+            List<Speciality> speciality = new List<Speciality>();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/playerphotoes").Result;
+                var result = client.GetAsync("https://localhost:44307/api/speciality").Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    photo = result.Content.ReadAsAsync<List<PlayerPhoto>>().Result;
+                    speciality = result.Content.ReadAsAsync<List<Speciality>>().Result;
                 }
             }
-            return View(photo);
+            return View(speciality);
         }
 
-        // GET: PlayerPhotoMVC/Create
-        public ActionResult InsertPhoto()
+        // GET: SpecialityMVC/Create
+        public ActionResult InsertSpeciality()
         {
             return View();
         }
 
-        // POST: PlayerPhotoMVC/Create
+        // POST: SpecialityMVC/Create
         [HttpPost]
-        public ActionResult InsertPhoto(PlayerPhoto playerPhoto)
+        public ActionResult InsertSpeciality(Speciality speciality)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/playerphotoes", playerPhoto).Result;
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/speciality", speciality).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -53,31 +53,31 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: PlayerPhotoMVC/Edit/5
-        public ActionResult UpdatePhoto(int id)
+        // GET: SpecialityMVC/Edit/5
+        public ActionResult UpdateSpeciality(int id)
         {
-            PlayerPhoto photo = new PlayerPhoto();
+            Speciality speciality = new Speciality();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/playerphotoes/" + id.ToString()).Result;
+                var result = client.GetAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    photo = result.Content.ReadAsAsync<PlayerPhoto>().Result;
-                    return View(photo);
+                    speciality = result.Content.ReadAsAsync<Speciality>().Result;
+                    return View(speciality);
                 }
             }
             return View();
         }
 
-        // POST: PlayerPhotoMVC/Edit/5
+        // POST: SpecialityMVC/Edit/5
         [HttpPost]
-        public ActionResult UpdatePhoto(PlayerPhoto playerPhoto)
+        public ActionResult UpdateSpeciality(Speciality speciality)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/playerphotoes/" + playerPhoto.Id.ToString(), playerPhoto).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/players/" + speciality.Id.ToString(), speciality).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -91,18 +91,18 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: PlayerPhotoMVC/Delete/5
-        public ActionResult DeletePhoto(int id)
+        // GET: SpecialityMVC/Delete/5
+        public ActionResult DeleteSpeciality(int id)
         {
             using (HttpClient client = new HttpClient())
             {
-                var result = client.DeleteAsync("https://localhost:44307/api/playerphotoes/" + id.ToString()).Result;
+                var result = client.DeleteAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("index");
                 }
             }
             return View();
-        }
+        } 
     }
 }
