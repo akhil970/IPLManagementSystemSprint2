@@ -167,7 +167,6 @@
     <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PlayerPhotoesController.cs" />
-    <Compile Include="Controllers\Players1Controller.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
