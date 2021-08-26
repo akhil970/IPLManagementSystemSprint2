@@ -93,7 +93,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ModelState);
                 }
             }
 
