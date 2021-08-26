@@ -127,6 +127,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsMVCController.cs" />
     <Compile Include="Controllers\PlayerMVCController.cs" />
+    <Compile Include="Controllers\PlayerstableMVCController.cs" />
     <Compile Include="Controllers\RoleMVCController.cs" />
     <Compile Include="Controllers\ScheduleMVCController.cs" />
     <Compile Include="Controllers\UserMVCController.cs" />
@@ -217,8 +218,9 @@
     <Content Include="Views\VenueMVC\DeleteVenue.cshtml" />
     <Content Include="Views\PlayerMVC\Index.cshtml" />
     <Content Include="Views\PlayerMVC\InsertPlayer.cshtml" />
-    <Content Include="Views\PlayerMVC\UpdatePlayer.cshtml" />
+    <Content Include="Views\PlayerMVC\UpdateEmployee.cshtml" />
     <Content Include="Views\PlayerMVC\DeletePlayer.cshtml" />
+    <Content Include="Views\PlayerstableMVC\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,9 +7,8 @@ using IPLManagementSystemMVC.Models;
 using System.Net.Http;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class PlayerMVCController : Controller
+    public class PlayerstableMVCController : Controller
     {
-        // GET: PlayerMVC
         public ActionResult Index()
         {
             List<Player> player = new List<Player>();
