@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_CustomerLayout</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--Header Row-->
+        <div class="row">
+            <div class="col-md-12">
+                <div style="background-color:aquamarine;height:100px;">
+                    <center><h2>Layout Page Header</h2></center>
+                    <br />
+                    <a href="@Url.Action("aboutus")">About Us</a> &nbsp;&nbsp;
+                    <a href="@Url.Action("contactus")">Contact Us</a> &nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+        <!--Body Row-->
+        <div class="row">
+            <div class="col-md-2">
+                <div style="background-color:floralwhite;height:400px;">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div style="background-color:honeydew;height:400px;">
+                    @RenderBody()
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div style="background-color:honeydew;height:400px;">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <!--Footer Row-->
+        @*<div class="row">
+            <div class="col-md-12">
+                <div style="background-color:lightgrey;height:70px;">
+                    <h4>Footer Row</h4>
+                    @RenderSection("footer", false);
+                </div>
+
+            </div>
+        </div>*@
+    </div>
+</body>
+</html>

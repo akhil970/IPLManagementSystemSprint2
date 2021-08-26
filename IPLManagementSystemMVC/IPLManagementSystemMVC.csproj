@@ -180,6 +180,9 @@
     <Content Include="Views\UserRoleMVC\Index.cshtml" />
     <Content Include="Views\UserRoleMVC\InsertUserRole.cshtml" />
     <Content Include="Views\UserRoleMVC\UpdateUserRole.cshtml" />
+    <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_CustomerLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
