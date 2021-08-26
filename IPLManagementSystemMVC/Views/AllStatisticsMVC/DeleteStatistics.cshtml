@@ -1,0 +1,89 @@
+﻿@model IPLManagementSystemMVC.Models.AllStatistic
+
+@{
+    ViewBag.Title = "DeleteStatistics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DeleteStatistics</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AllStatistic</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Played)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Played)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Won)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Won)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tied)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoResult)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoResult)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NRR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NRR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Points)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Points)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
