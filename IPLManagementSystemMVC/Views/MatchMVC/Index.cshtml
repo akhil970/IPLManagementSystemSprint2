@@ -1,0 +1,64 @@
+﻿@model IEnumerable<IPLManagementSystemMVC.Models.Match>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add Match", "InsertMatch")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamOneId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamTwoId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VenueId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduleId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatchPhoto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TeamOneId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TeamTwoId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.VenueId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ScheduleId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MatchPhoto)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "UpdateMatch", new { id = item.Id }) |
+        @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+        @Html.ActionLink("Delete", "DeleteMatch", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

@@ -7,39 +7,38 @@ using System.Net.Http;
 using IPLManagementSystemMVC.Models;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class SpecialityMVCController : Controller
+    public class TicketCategoryMVCController : Controller
     {
-        //[OutputCache (Duration = 60, VaryByParam = "none")]
-        // GET: SpecialityMVC
+        // GET: TikcetCategoryMVC
         public ActionResult Index()
         {
-            List<Speciality> speciality = new List<Speciality>();
+            List<TicketCategory> ticketCategory = new List<TicketCategory>();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/speciality").Result;
+                var result = client.GetAsync("https://localhost:44307/api/ticketcategories").Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    speciality = result.Content.ReadAsAsync<List<Speciality>>().Result;
+                    ticketCategory = result.Content.ReadAsAsync<List<TicketCategory>>().Result;
                 }
             }
-            return View(speciality);
+            return View(ticketCategory);
         }
 
-        // GET: SpecialityMVC/Create
-        public ActionResult InsertSpeciality()
+        // GET: TikcetCategoryMVC/Create
+        public ActionResult InsertTicketCategory()
         {
             return View();
         }
 
-        // POST: SpecialityMVC/Create
+        // POST: TikcetCategoryMVC/Create
         [HttpPost]
-        public ActionResult InsertSpeciality(Speciality speciality)
+        public ActionResult InsertTicketCategory(TicketCategory ticketCategory)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/speciality", speciality).Result;
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/ticketcategories", ticketCategory).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -53,31 +52,31 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: SpecialityMVC/Edit/5
-        public ActionResult UpdateSpeciality(int id)
+        // GET: TikcetCategoryMVC/Edit/5
+        public ActionResult UpdateTicketCategory(int id)
         {
-            Speciality speciality = new Speciality();
+            TicketCategory ticketCategory = new TicketCategory();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
+                var result = client.GetAsync("https://localhost:44307/api/ticketcategories/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    speciality = result.Content.ReadAsAsync<Speciality>().Result;
-                    return View(speciality);
+                    ticketCategory = result.Content.ReadAsAsync<TicketCategory>().Result;
+                    return View(ticketCategory);
                 }
             }
             return View();
         }
 
-        // POST: SpecialityMVC/Edit/5
+        // POST: TikcetCategoryMVC/Edit/5
         [HttpPost]
-        public ActionResult UpdateSpeciality(Speciality speciality)
+        public ActionResult UpdateTicketCategory(TicketCategory ticketCategory)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/players/" + speciality.Id.ToString(), speciality).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/ticketcategories/" + ticketCategory.Id.ToString(), ticketCategory).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -91,18 +90,18 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: SpecialityMVC/Delete/5
-        public ActionResult DeleteSpeciality(int id)
+        // GET: TikcetCategoryMVC/Delete/5
+        public ActionResult DeleteTicketCategory(int id)
         {
             using (HttpClient client = new HttpClient())
             {
-                var result = client.DeleteAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
+                var result = client.DeleteAsync("https://localhost:44307/api/ticketcategories/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("index");
                 }
             }
             return View();
-        } 
+        }
     }
 }

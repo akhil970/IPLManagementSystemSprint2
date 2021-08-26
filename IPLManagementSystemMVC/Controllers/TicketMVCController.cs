@@ -7,39 +7,38 @@ using System.Net.Http;
 using IPLManagementSystemMVC.Models;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class SpecialityMVCController : Controller
+    public class TicketMVCController : Controller
     {
-        //[OutputCache (Duration = 60, VaryByParam = "none")]
-        // GET: SpecialityMVC
+        // GET: TicketMVC
         public ActionResult Index()
         {
-            List<Speciality> speciality = new List<Speciality>();
+            List<Ticket> ticket = new List<Ticket>();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/speciality").Result;
+                var result = client.GetAsync("https://localhost:44307/api/tickets").Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    speciality = result.Content.ReadAsAsync<List<Speciality>>().Result;
+                    ticket = result.Content.ReadAsAsync<List<Ticket>>().Result;
                 }
             }
-            return View(speciality);
+            return View(ticket);
         }
 
-        // GET: SpecialityMVC/Create
-        public ActionResult InsertSpeciality()
+        // GET: TicketMVC/Create
+        public ActionResult InsertTicket()
         {
             return View();
         }
 
-        // POST: SpecialityMVC/Create
+        // POST: TicketMVC/Create
         [HttpPost]
-        public ActionResult InsertSpeciality(Speciality speciality)
+        public ActionResult InsertTicket(Ticket ticket)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/speciality", speciality).Result;
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/tickets", ticket).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -53,31 +52,31 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: SpecialityMVC/Edit/5
-        public ActionResult UpdateSpeciality(int id)
+        // GET: TicketMVC/Edit/5
+        public ActionResult UpdateTicket(int id)
         {
-            Speciality speciality = new Speciality();
+            Ticket ticket = new Ticket();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
+                var result = client.GetAsync("https://localhost:44307/api/tickets/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    speciality = result.Content.ReadAsAsync<Speciality>().Result;
-                    return View(speciality);
+                    ticket = result.Content.ReadAsAsync<Ticket>().Result;
+                    return View(ticket);
                 }
             }
             return View();
         }
 
-        // POST: SpecialityMVC/Edit/5
+        // POST: TicketMVC/Edit/5
         [HttpPost]
-        public ActionResult UpdateSpeciality(Speciality speciality)
+        public ActionResult UpdateTicket(Ticket ticket)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/players/" + speciality.Id.ToString(), speciality).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/tickets/" + ticket.Id.ToString(), ticket).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -91,18 +90,18 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: SpecialityMVC/Delete/5
-        public ActionResult DeleteSpeciality(int id)
+        // GET: TicketMVC/Delete/5
+        public ActionResult DeleteTicket(int id)
         {
             using (HttpClient client = new HttpClient())
             {
-                var result = client.DeleteAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
+                var result = client.DeleteAsync("https://localhost:44307/api/tickets/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("index");
                 }
             }
             return View();
-        } 
+        }
     }
 }

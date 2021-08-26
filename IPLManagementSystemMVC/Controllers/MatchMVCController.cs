@@ -7,39 +7,38 @@ using System.Net.Http;
 using IPLManagementSystemMVC.Models;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class SpecialityMVCController : Controller
+    public class MatchMVCController : Controller
     {
-        //[OutputCache (Duration = 60, VaryByParam = "none")]
-        // GET: SpecialityMVC
+        // GET: MatchMVC
         public ActionResult Index()
         {
-            List<Speciality> speciality = new List<Speciality>();
+            List<Match> match = new List<Match>();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/speciality").Result;
+                var result = client.GetAsync("https://localhost:44307/api/matches").Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    speciality = result.Content.ReadAsAsync<List<Speciality>>().Result;
+                    match = result.Content.ReadAsAsync<List<Match>>().Result;
                 }
             }
-            return View(speciality);
+            return View(match);
         }
 
-        // GET: SpecialityMVC/Create
-        public ActionResult InsertSpeciality()
+        // GET: MatchMVC/Create
+        public ActionResult InsertMatch()
         {
             return View();
         }
 
-        // POST: SpecialityMVC/Create
+        // POST: MatchMVC/Create
         [HttpPost]
-        public ActionResult InsertSpeciality(Speciality speciality)
+        public ActionResult InsertMatch(Match match)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/speciality", speciality).Result;
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/matches", match).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -53,31 +52,31 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: SpecialityMVC/Edit/5
-        public ActionResult UpdateSpeciality(int id)
+        // GET: MatchMVC/Edit/5
+        public ActionResult UpdateMatch(int id)
         {
-            Speciality speciality = new Speciality();
+            Match match = new Match();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
+                var result = client.GetAsync("https://localhost:44307/api/matches/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    speciality = result.Content.ReadAsAsync<Speciality>().Result;
-                    return View(speciality);
+                    match = result.Content.ReadAsAsync<Match>().Result;
+                    return View(match);
                 }
             }
             return View();
         }
 
-        // POST: SpecialityMVC/Edit/5
+        // POST: MatchMVC/Edit/5
         [HttpPost]
-        public ActionResult UpdateSpeciality(Speciality speciality)
+        public ActionResult UpdateMatch(Match match)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/players/" + speciality.Id.ToString(), speciality).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/matches/" + match.Id.ToString(), match).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -91,18 +90,18 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: SpecialityMVC/Delete/5
-        public ActionResult DeleteSpeciality(int id)
+        // GET: MatchMVC/Delete/5
+        public ActionResult DeleteMatch(int id)
         {
             using (HttpClient client = new HttpClient())
             {
-                var result = client.DeleteAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
+                var result = client.DeleteAsync("https://localhost:44307/api/matches/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("index");
                 }
             }
             return View();
-        } 
+        }
     }
 }

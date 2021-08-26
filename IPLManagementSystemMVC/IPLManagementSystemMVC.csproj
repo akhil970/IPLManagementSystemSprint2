@@ -125,12 +125,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AllStatisticsMVCController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MatchMVCController.cs" />
     <Compile Include="Controllers\NewsMVCController.cs" />
     <Compile Include="Controllers\PlayerMVCController.cs" />
     <Compile Include="Controllers\PlayerPhotoMVCController.cs" />
     <Compile Include="Controllers\RoleMVCController.cs" />
     <Compile Include="Controllers\ScheduleMVCController.cs" />
     <Compile Include="Controllers\SpecialityMVCController.cs" />
+    <Compile Include="Controllers\TeamMVCController.cs" />
+    <Compile Include="Controllers\TicketMVCController.cs" />
+    <Compile Include="Controllers\TicketCategoryMVCController.cs" />
     <Compile Include="Controllers\UserMVCController.cs" />
     <Compile Include="Controllers\UserRoleMVCController.cs" />
     <Compile Include="Controllers\VenueMVCController.cs" />
@@ -229,6 +233,22 @@
     <Content Include="Views\SpecialityMVC\InsertSpeciality.cshtml" />
     <Content Include="Views\SpecialityMVC\UpdateSpeciality.cshtml" />
     <Content Include="Views\SpecialityMVC\DeleteSpeciality.cshtml" />
+    <Content Include="Views\MatchMVC\Index.cshtml" />
+    <Content Include="Views\MatchMVC\InsertMatch.cshtml" />
+    <Content Include="Views\MatchMVC\UpdateMatch.cshtml" />
+    <Content Include="Views\MatchMVC\DeleteMatch.cshtml" />
+    <Content Include="Views\TeamMVC\DeleteTeam.cshtml" />
+    <Content Include="Views\TeamMVC\Index.cshtml" />
+    <Content Include="Views\TeamMVC\UpdateTeam.cshtml" />
+    <Content Include="Views\TeamMVC\InsertTeam.cshtml" />
+    <Content Include="Views\TicketMVC\Index.cshtml" />
+    <Content Include="Views\TicketMVC\InsertTicket.cshtml" />
+    <Content Include="Views\TicketMVC\UpdateTicket.cshtml" />
+    <Content Include="Views\TicketMVC\DeleteTicket.cshtml" />
+    <Content Include="Views\TicketCategoryMVC\Index.cshtml" />
+    <Content Include="Views\TicketCategoryMVC\InsertTicketCategory.cshtml" />
+    <Content Include="Views\TicketCategoryMVC\UpdateTicketCategory.cshtml" />
+    <Content Include="Views\TicketCategoryMVC\DeleteTicketCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,39 +7,38 @@ using System.Net.Http;
 using IPLManagementSystemMVC.Models;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class SpecialityMVCController : Controller
+    public class TeamMVCController : Controller
     {
-        //[OutputCache (Duration = 60, VaryByParam = "none")]
-        // GET: SpecialityMVC
+        // GET: TeamMVC
         public ActionResult Index()
         {
-            List<Speciality> speciality = new List<Speciality>();
+            List<Team> team = new List<Team>();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/speciality").Result;
+                var result = client.GetAsync("https://localhost:44307/api/teams").Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    speciality = result.Content.ReadAsAsync<List<Speciality>>().Result;
+                    team = result.Content.ReadAsAsync<List<Team>>().Result;
                 }
             }
-            return View(speciality);
+            return View(team);
         }
 
-        // GET: SpecialityMVC/Create
-        public ActionResult InsertSpeciality()
+        // GET: TeamMVC/Create
+        public ActionResult InsertTeam()
         {
             return View();
         }
 
-        // POST: SpecialityMVC/Create
+        // POST: TeamMVC/Create
         [HttpPost]
-        public ActionResult InsertSpeciality(Speciality speciality)
+        public ActionResult InsertTeam(Team team)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/speciality", speciality).Result;
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/teams", team).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -53,31 +52,31 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: SpecialityMVC/Edit/5
-        public ActionResult UpdateSpeciality(int id)
+        // GET: TeamMVC/Edit/5
+        public ActionResult UpdateTeam(int id)
         {
-            Speciality speciality = new Speciality();
+            Team team = new Team();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
+                var result = client.GetAsync("https://localhost:44307/api/teams/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    speciality = result.Content.ReadAsAsync<Speciality>().Result;
-                    return View(speciality);
+                    team = result.Content.ReadAsAsync<Team>().Result;
+                    return View(team);
                 }
             }
             return View();
         }
 
-        // POST: SpecialityMVC/Edit/5
+        // POST: TeamMVC/Edit/5
         [HttpPost]
-        public ActionResult UpdateSpeciality(Speciality speciality)
+        public ActionResult UpdateTeam(Team team)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/players/" + speciality.Id.ToString(), speciality).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/teams/" + team.Id.ToString(), team).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -91,18 +90,18 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: SpecialityMVC/Delete/5
-        public ActionResult DeleteSpeciality(int id)
+        // GET: TeamMVC/Delete/5
+        public ActionResult DeleteTeam(int id)
         {
             using (HttpClient client = new HttpClient())
             {
-                var result = client.DeleteAsync("https://localhost:44307/api/speciality/" + id.ToString()).Result;
+                var result = client.DeleteAsync("https://localhost:44307/api/teams/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("index");
                 }
             }
             return View();
-        } 
+        }
     }
 }
