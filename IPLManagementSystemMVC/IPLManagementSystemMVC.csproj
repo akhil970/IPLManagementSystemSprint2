@@ -125,7 +125,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AllStatisticsMVCController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsMVCController.cs" />
     <Compile Include="Controllers\RoleMVCController.cs" />
+    <Compile Include="Controllers\ScheduleMVCController.cs" />
     <Compile Include="Controllers\UserMVCController.cs" />
     <Compile Include="Controllers\UserRoleMVCController.cs" />
     <Compile Include="Global.asax.cs">
@@ -135,9 +137,13 @@
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayerPhoto.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TicketCategory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\Venue.cs" />
@@ -195,6 +201,14 @@
     <Content Include="Views\AllStatisticsMVC\InsertStatistics.cshtml" />
     <Content Include="Views\AllStatisticsMVC\UpdateStatistics.cshtml" />
     <Content Include="Views\AllStatisticsMVC\DeleteStatistics.cshtml" />
+    <Content Include="Views\NewsMVC\Index.cshtml" />
+    <Content Include="Views\NewsMVC\InsertNews.cshtml" />
+    <Content Include="Views\NewsMVC\UpdateNews.cshtml" />
+    <Content Include="Views\NewsMVC\DeleteNews.cshtml" />
+    <Content Include="Views\ScheduleMVC\Index.cshtml" />
+    <Content Include="Views\ScheduleMVC\InsertSchedule.cshtml" />
+    <Content Include="Views\ScheduleMVC\UpdateSchedule.cshtml" />
+    <Content Include="Views\ScheduleMVC\DeleteSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

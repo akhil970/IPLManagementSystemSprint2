@@ -1,0 +1,51 @@
+﻿@model IEnumerable<IPLManagementSystemMVC.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add News", "InsertNews")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatchId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.News_Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MatchId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "UpdateNews", new { id = item.Id }) |
+        @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+        @Html.ActionLink("Delete", "DeleteNews", new { id = item.Id })
+    </td>
+</tr>
+}
+</table>
