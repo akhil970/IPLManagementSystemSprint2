@@ -125,6 +125,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AllStatisticsMVCController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\MatchMVCController.cs" />
     <Compile Include="Controllers\NewsMVCController.cs" />
     <Compile Include="Controllers\PlayerMVCController.cs" />
@@ -166,6 +167,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Logos\ipl logo 2.jpeg" />
+    <Content Include="Images\Logos\pic1.jpg" />
+    <Content Include="Images\Logos\pic2.jpg" />
+    <Content Include="Images\Logos\pic3.jpeg" />
+    <Content Include="Images\Logos\pic4.jpg" />
+    <Content Include="Images\Logos\pic5.jpg" />
+    <Content Include="Images\Logos\pic6.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -249,9 +257,13 @@
     <Content Include="Views\TicketCategoryMVC\InsertTicketCategory.cshtml" />
     <Content Include="Views\TicketCategoryMVC\UpdateTicketCategory.cshtml" />
     <Content Include="Views\TicketCategoryMVC\DeleteTicketCategory.cshtml" />
+    <Content Include="Views\Shared\_HomePageLayout.cshtml" />
+    <Content Include="Views\HomePage\Index.cshtml" />
+    <Content Include="Views\HomePage\Employee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Players\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -16,7 +16,12 @@ namespace IPLManagementSystemMVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "HomePage", action = "Employee", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Venue",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "VenueMVC", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
