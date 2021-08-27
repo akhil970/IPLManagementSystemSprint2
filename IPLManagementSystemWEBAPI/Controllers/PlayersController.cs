@@ -17,10 +17,17 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/Players
-        public IQueryable<Player> GetPlayers()
+        //public IQueryable<Player> GetPlayers()
+        //{
+        //    return db.Players;
+        //}
+        public IHttpActionResult GetPlayers()
         {
-            return db.Players;
+            var player = db.Players.Select(p => new { p.Id, p.Name, p.TeamId, p.Age, p.SpecialityId, p.PhotoId });
+            //return db.Players;
+            return Ok(player);
         }
+
 
         // GET: api/Players/5
         [ResponseType(typeof(Player))]

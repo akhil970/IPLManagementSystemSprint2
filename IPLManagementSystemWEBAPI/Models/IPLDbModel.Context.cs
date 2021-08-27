@@ -12,6 +12,8 @@ namespace IPLManagementSystemWEBAPI.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class IPLDBEntities : DbContext
     {
@@ -41,5 +43,130 @@ namespace IPLManagementSystemWEBAPI.Models
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
+    
+        public virtual ObjectResult<customer_news_view_Result> customer_news_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<customer_news_view_Result>("customer_news_view");
+        }
+    
+        public virtual ObjectResult<customer_ticket_category_Result> customer_ticket_category()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<customer_ticket_category_Result>("customer_ticket_category");
+        }
+    
+        public virtual ObjectResult<string> usp_customer_match_selection()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_customer_match_selection");
+        }
+    
+        public virtual ObjectResult<usp_customer_matches_Result> usp_customer_matches()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_customer_matches_Result>("usp_customer_matches");
+        }
+    
+        public virtual ObjectResult<usp_customer_player_selection_Result> usp_customer_player_selection(string playerName)
+        {
+            var playerNameParameter = playerName != null ?
+                new ObjectParameter("PlayerName", playerName) :
+                new ObjectParameter("PlayerName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_customer_player_selection_Result>("usp_customer_player_selection", playerNameParameter);
+        }
+    
+        public virtual ObjectResult<string> usp_customer_team_selection(string teamName)
+        {
+            var teamNameParameter = teamName != null ?
+                new ObjectParameter("TeamName", teamName) :
+                new ObjectParameter("TeamName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_customer_team_selection", teamNameParameter);
+        }
+    
+        public virtual ObjectResult<usp_customer_teamnames_Result> usp_customer_teamnames()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_customer_teamnames_Result>("usp_customer_teamnames");
+        }
+    
+        public virtual ObjectResult<string> usp_customer_ticketcategory_selection()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_customer_ticketcategory_selection");
+        }
+    
+        public virtual ObjectResult<usp_listplayer_onteamid_Result> usp_listplayer_onteamid(Nullable<int> teamId)
+        {
+            var teamIdParameter = teamId.HasValue ?
+                new ObjectParameter("TeamId", teamId) :
+                new ObjectParameter("TeamId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_listplayer_onteamid_Result>("usp_listplayer_onteamid", teamIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> usp_roleid(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("usp_roleid", useridParameter);
+        }
+    
+        public virtual int usp_users_insert(Nullable<int> userId, string username, string firstname, string lastname, string password)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var firstnameParameter = firstname != null ?
+                new ObjectParameter("Firstname", firstname) :
+                new ObjectParameter("Firstname", typeof(string));
+    
+            var lastnameParameter = lastname != null ?
+                new ObjectParameter("Lastname", lastname) :
+                new ObjectParameter("Lastname", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_users_insert", userIdParameter, usernameParameter, firstnameParameter, lastnameParameter, passwordParameter);
+        }
+    
+        public virtual int usp_Users_update(Nullable<int> userId, string username, string firstname, string lastname, string password)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var firstnameParameter = firstname != null ?
+                new ObjectParameter("Firstname", firstname) :
+                new ObjectParameter("Firstname", typeof(string));
+    
+            var lastnameParameter = lastname != null ?
+                new ObjectParameter("Lastname", lastname) :
+                new ObjectParameter("Lastname", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_Users_update", userIdParameter, usernameParameter, firstnameParameter, lastnameParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<usp_login_Result> usp_login(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_login_Result>("usp_login", usernameParameter);
+        }
     }
 }

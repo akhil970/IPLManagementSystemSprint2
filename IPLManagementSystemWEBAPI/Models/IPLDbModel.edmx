@@ -300,6 +300,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="customer_news_view" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="customer_ticket_category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_customer_match_selection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_customer_matches" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_customer_player_selection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PlayerName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_customer_team_selection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TeamName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_customer_teamnames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_customer_ticketcategory_selection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_listplayer_onteamid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TeamId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_roleid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_users_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Firstname" Type="varchar" Mode="In" />
+          <Parameter Name="Lastname" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Users_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Firstname" Type="varchar" Mode="In" />
+          <Parameter Name="Lastname" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="IPLDbModelStoreContainer">
           <EntitySet Name="AllStatistics" EntityType="Self.AllStatistics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Match" EntityType="Self.Match" Schema="dbo" store:Type="Tables" />
@@ -762,7 +797,78 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRoles" EntitySet="UserRoles" />
           </AssociationSet>
+          <FunctionImport Name="customer_news_view" ReturnType="Collection(IPLDbModel.customer_news_view_Result)" />
+          <FunctionImport Name="customer_ticket_category" ReturnType="Collection(IPLDbModel.customer_ticket_category_Result)" />
+          <FunctionImport Name="usp_customer_match_selection" ReturnType="Collection(String)" />
+          <FunctionImport Name="usp_customer_matches" ReturnType="Collection(IPLDbModel.usp_customer_matches_Result)" />
+          <FunctionImport Name="usp_customer_player_selection" ReturnType="Collection(IPLDbModel.usp_customer_player_selection_Result)">
+          <Parameter Name="PlayerName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_customer_team_selection" ReturnType="Collection(String)">
+          <Parameter Name="TeamName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_customer_teamnames" ReturnType="Collection(IPLDbModel.usp_customer_teamnames_Result)" />
+          <FunctionImport Name="usp_customer_ticketcategory_selection" ReturnType="Collection(String)" />
+          <FunctionImport Name="usp_listplayer_onteamid" ReturnType="Collection(IPLDbModel.usp_listplayer_onteamid_Result)">
+          <Parameter Name="TeamId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_roleid" ReturnType="Collection(Int32)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_users_insert">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Firstname" Mode="In" Type="String" />
+            <Parameter Name="Lastname" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Users_update">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Firstname" Mode="In" Type="String" />
+            <Parameter Name="Lastname" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_login" ReturnType="Collection(IPLDbModel.usp_login_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="customer_news_view_Result">
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Match" Nullable="false" MaxLength="164" />
+          <Property Type="String" Name="Match_Photo" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Match_Result" Nullable="true" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="customer_ticket_category_Result">
+          <Property Type="String" Name="Ticket_Name" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_customer_matches_Result">
+          <Property Type="DateTime" Name="Match_Date" Nullable="true" />
+          <Property Type="String" Name="Match" Nullable="false" MaxLength="164" />
+          <Property Type="String" Name="Match_Photo" Nullable="true" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="usp_customer_player_selection_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="usp_customer_teamnames_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="usp_listplayer_onteamid_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="usp_login_Result">
+          <Property Type="Int32" Name="Userid" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="firstname" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="lastname" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="200" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -923,6 +1029,76 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="customer_news_view" FunctionName="IPLDbModel.Store.customer_news_view">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.customer_news_view_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Match" ColumnName="Match" />
+                <ScalarProperty Name="Match_Photo" ColumnName="Match_Photo" />
+                <ScalarProperty Name="Match_Result" ColumnName="Match_Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="customer_ticket_category" FunctionName="IPLDbModel.Store.customer_ticket_category">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.customer_ticket_category_Result">
+                <ScalarProperty Name="Ticket_Name" ColumnName="Ticket_Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_customer_match_selection" FunctionName="IPLDbModel.Store.usp_customer_match_selection" />
+          <FunctionImportMapping FunctionImportName="usp_customer_matches" FunctionName="IPLDbModel.Store.usp_customer_matches">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_customer_matches_Result">
+                <ScalarProperty Name="Match_Date" ColumnName="Match_Date" />
+                <ScalarProperty Name="Match" ColumnName="Match" />
+                <ScalarProperty Name="Match_Photo" ColumnName="Match_Photo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_customer_player_selection" FunctionName="IPLDbModel.Store.usp_customer_player_selection">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_customer_player_selection_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_customer_team_selection" FunctionName="IPLDbModel.Store.usp_customer_team_selection" />
+          <FunctionImportMapping FunctionImportName="usp_customer_teamnames" FunctionName="IPLDbModel.Store.usp_customer_teamnames">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_customer_teamnames_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_customer_ticketcategory_selection" FunctionName="IPLDbModel.Store.usp_customer_ticketcategory_selection" />
+          <FunctionImportMapping FunctionImportName="usp_listplayer_onteamid" FunctionName="IPLDbModel.Store.usp_listplayer_onteamid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_listplayer_onteamid_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_roleid" FunctionName="IPLDbModel.Store.usp_roleid" />
+          <FunctionImportMapping FunctionImportName="usp_users_insert" FunctionName="IPLDbModel.Store.usp_users_insert" />
+          <FunctionImportMapping FunctionImportName="usp_Users_update" FunctionName="IPLDbModel.Store.usp_Users_update" />
+          <FunctionImportMapping FunctionImportName="usp_login" FunctionName="IPLDbModel.Store.usp_login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_login_Result">
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

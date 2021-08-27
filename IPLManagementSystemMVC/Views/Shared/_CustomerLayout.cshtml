@@ -9,47 +9,57 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>_CustomerLayout</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .nav-item {
+            padding: 10px;
+            color: azure;
+        }
+    </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <!--Header Row-->
-        <div class="row">
-            <div class="col-md-12">
-                <div style="background-color:aquamarine;height:100px;">
-                    <center><h2>Layout Page Header</h2></center>
-                    <br />
-                    <a href="@Url.Action("aboutus")">About Us</a> &nbsp;&nbsp;
-                    <a href="@Url.Action("contactus")">Contact Us</a> &nbsp;&nbsp;
-                </div>
-            </div>
+    <nav class="navbar navbar-expand-md fixed-top" style="padding: 0px; background-color: darkblue; font-size: medium">
+        <a href="#" style="background-color:darkblue"><img style="height:50px; width:60px" src="~/Images/Logos/ipl logo 2.jpeg" /></a>
+        <!--For menu items -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <a href="#" class="nav-item nav-link">Home</a>
+            <a href="#" class="nav-item nav-link">About Us</a>
         </div>
-        <!--Body Row-->
-        <div class="row">
-            <div class="col-md-2">
-                <div style="background-color:floralwhite;height:400px;">
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div style="background-color:honeydew;height:400px;">
-                    @RenderBody()
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div style="background-color:honeydew;height:400px;">
-                    @RenderBody()
-                </div>
-            </div>
+        <!--For Login and Register links -->
+        <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link" style="padding:10px;font-size:medium;">Logout</a>
         </div>
-        <!--Footer Row-->
-        @*<div class="row">
-            <div class="col-md-12">
-                <div style="background-color:lightgrey;height:70px;">
-                    <h4>Footer Row</h4>
-                    @RenderSection("footer", false);
-                </div>
+    </nav>
+    <!--Body Row-->
+    <div class="row">
+        <div class="col-md-3">
+            <div style="background-color: lightblue; margin: 10px; height: 600px; float: left; font-size: medium">
+                <h4>Select Option Here!</h4>
+                <div style="padding:5px;font-size:20px">
+                    <a href="@Url.Action("TeamsAndPlayers","CustomerMVC")">Teams & Players</a><br />
+                    <a href="@Url.Action("Matches","CustomerMVC")">Matches</a><br />
+                    <a href="@Url.Action("Tickets","CustomerMVC")">Tickets</a><br />
+                    <a href="@Url.Action("Points_Table","CustomerMVC")">Points Tables</a><br />
 
+                </div>
             </div>
-        </div>*@
+        </div>
+        <div class="col-md-6">
+            <div style="font-size:medium; height: 400px;">
+                @RenderBody()
+            </div>
+        </div>
     </div>
 </body>
 </html>

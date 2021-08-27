@@ -184,6 +184,12 @@
     <Compile Include="Models\AllStatistic.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\customer_news_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\customer_ticket_category_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IPLDbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -236,6 +242,21 @@
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRole.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_customer_matches_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_customer_player_selection_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_customer_teamnames_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_listplayer_onteamid_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_login_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Venue.cs">
