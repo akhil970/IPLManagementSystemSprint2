@@ -19,21 +19,20 @@ namespace IPLManagementSystemWEBAPI.Controllers
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            //db.Configuration.ProxyCreationEnabled = false;
+            //var usersList = db.Users.Select(u => new { u.UserId, u.Username, u.FirstName, u.LastName, });
             return db.Users;
+            //return Ok(usersList);
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            //db.Configuration.ProxyCreationEnabled = false;
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return NotFound();
             }
-
             return Ok(user);
         }
 
@@ -41,7 +40,6 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(int id, User user)
         {
-            //db.Configuration.ProxyCreationEnabled = false;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -51,8 +49,9 @@ namespace IPLManagementSystemWEBAPI.Controllers
             {
                 return BadRequest();
             }
-
-            db.Entry(user).State = EntityState.Modified;
+            //Just checking
+            db.usp_Users_update(user.UserId, user.Username, user.FirstName, user.LastName, BitConverter.ToString(user.password));
+            //db.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -77,13 +76,16 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
-            //db.Configuration.ProxyCreationEnabled = false;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            //db.Users.Add(user);
+            //Just Checking
+
+            db.usp_users_insert(user.UserId, user.Username, user.FirstName, user.LastName, BitConverter.ToString(user.password));
+
 
             try
             {
@@ -108,7 +110,6 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
-            //db.Configuration.ProxyCreationEnabled = false;
             User user = db.Users.Find(id);
             if (user == null)
             {
@@ -123,7 +124,6 @@ namespace IPLManagementSystemWEBAPI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            //db.Configuration.ProxyCreationEnabled = false;
             if (disposing)
             {
                 db.Dispose();

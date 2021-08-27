@@ -8,10 +8,11 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "InsertUser")
+    @Html.ActionLink("Add User", "InsertUser")
 </p>
 <table class="table">
     <tr>
+
         <th>
             @Html.DisplayNameFor(model => model.UserId)
         </th>
@@ -25,7 +26,7 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.password)
+            @Html.DisplayNameFor(model => model.Password)
         </th>
         <th></th>
     </tr>
@@ -45,7 +46,7 @@
         @Html.DisplayFor(modelItem => item.LastName)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.password)
+        @Html.DisplayFor(modelItem => item.Password)
     </td>
     <td>
         @Html.ActionLink("Edit", "UpdateUser", new { id = item.UserId })

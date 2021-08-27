@@ -1,91 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http; //for http client class
 using System.Web;
 using System.Web.Mvc;
 using IPLManagementSystemMVC.Models;
+using System.Net.Http;
 namespace IPLManagementSystemMVC.Controllers
 {
     public class UserMVCController : Controller
     {
-        [OutputCache(Duration = 60, VaryByParam = "none")]
         // GET: UserMVC
-        //To get user details in a desired format specified in its view
         public ActionResult Index()
         {
-            List<User> usersList = new List<User>();
+            List<User> users = new List<User>();
             using (HttpClient client = new HttpClient())
             {
-                //To get the response code from the url specified if ok we will read the data
                 var result = client.GetAsync("https://localhost:44307/api/users").Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    usersList = result.Content.ReadAsAsync<List<User>>().Result;
+                    users = result.Content.ReadAsAsync<List<User>>().Result;
                 }
             }
-            return View(usersList);
+            return View(users);
         }
 
-        //To insert a user
+        // GET: UserMVC/Create
         public ActionResult InsertUser()
         {
             return View();
         }
-        [HttpPost] //works when submit button is clicked
-        public ActionResult InsertUser(User userData)
+
+        // POST: UserMVC/Create
+        [HttpPost]
+        public ActionResult InsertUser(User user)
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                var result = client.PostAsJsonAsync("https://localhost:44307/api/users", userData).Result;
-                if (result.IsSuccessStatusCode)
+                using (HttpClient client = new HttpClient())
                 {
-                    return RedirectToAction("index");
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/users", user).Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("index");
+                    }
                 }
+                return View();
             }
-            return View();
-        }
-        //To delete a user
-        public ActionResult DeleteUser(int id)
-        {
-            using (HttpClient client = new HttpClient())
+            catch
             {
-                var result = client.DeleteAsync("https://localhost:44307/api/users/" + id.ToString()).Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("index");
-                }
+                return View();
             }
-            return View();
         }
-        //To update a user
+
+        // GET: UserMVC/Edit/5
         public ActionResult UpdateUser(int id)
         {
-            User user = new User();
+            User users = new User();
             using (HttpClient client = new HttpClient())
             {
                 var result = client.GetAsync("https://localhost:44307/api/users/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    user = result.Content.ReadAsAsync<User>().Result;
-                    return View(user);
+                    users = result.Content.ReadAsAsync<User>().Result;
+                    return View(users);
                 }
             }
             return View();
         }
 
+        // POST: UserMVC/Edit/5
         [HttpPost]
         public ActionResult UpdateUser(User user)
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                var result = client.PutAsJsonAsync("https://localhost:44307/api/users/" + user.UserId.ToString(), user).Result;
-                if (result.IsSuccessStatusCode)
+                using (HttpClient client = new HttpClient())
                 {
-                    return RedirectToAction("index");
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/users/" + user.UserId.ToString(), user).Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("index");
+                    }
                 }
+                return View();
             }
-            return View();
+            catch
+            {
+                return View();
+            }
         }
     }
 }
