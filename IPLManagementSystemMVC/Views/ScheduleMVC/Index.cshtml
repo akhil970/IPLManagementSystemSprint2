@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
 }
 
 <h2>Index</h2>
@@ -55,7 +55,6 @@
     </td>
     <td>
         @Html.ActionLink("Edit", "UpdateSchedule", new { id = item.Id }) |
-        @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
         @Html.ActionLink("Delete", "DeleteSchedule", new { id = item.Id })
     </td>
 </tr>
