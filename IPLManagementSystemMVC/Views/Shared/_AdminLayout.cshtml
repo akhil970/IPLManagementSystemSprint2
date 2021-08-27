@@ -11,36 +11,54 @@
     <title>_AdminLayout</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="container-fluid">
-        <!--Header Row-->
-        <nav class="navbar navbar-expand-md fixed-top" style="padding:0px; background-color:darkblue;">
-            <a href="#" style="background-color:darkblue"><img style="height:50px; width:60px" src="~/Images/Logos/ipl logo 2.jpeg" /></a>
-            <!--For Logout Link-->
-            <div class="navbar-nav">
-                <a href="#" class="nav-item collapse navbar-collapse nav-link">Logout</a>
-            </div>
-        </nav>
-        <!--Body Row-->
-        <div class="row">
-            <div class="col-md-3">
-                <div style="background-color:lightblue;height:400px; float:left">
-                    <h4>Operations Here!</h4>
-                    <a href="@Url.Action("Index","UserMVC")">Venue</a><br />
-                    <a href="@Url.Action("Index","RoleMVC")">Speciality</a><br />
-                    <a href="@Url.Action("Index","UserRoleMVC")">Speciality</a><br />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div style="margin-right:100px; height: 400px;">
-                    @RenderBody()
-                </div>
-            </div>
-        </div>
-    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .nav-item {
+            padding:10px;
+            color: azure;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md fixed-top" style="padding:0px; background-color:darkblue; font-size:medium">
+        <a href="#" style="background-color:darkblue"><img style="height:50px; width:60px" src="~/Images/Logos/ipl logo 2.jpeg" /></a>
+        <!--For menu items -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <a href="#" class="nav-item nav-link">Home</a>
+            <a href="#" class="nav-item nav-link">About Us</a>
+        </div>
+        <!--For Login and Register links -->
+        <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link" style="padding:10px;font-size:medium;">Logout</a>
+        </div>
+    </nav>
+    <!--Body Row-->
+    <div class="row">
+        <div class="col-md-3">
+            <div style="background-color: lightblue; margin:10px;height: 600px; float: left; font-size: medium">
+                <h3>Operations Here!</h3>
+                <div style="padding:5px;font-size:20px">
+                    <a href="@Url.Action("Index","UserMVC")">Users</a><br />
+                    <a href="@Url.Action("Index","RoleMVC")">Roles</a><br />
+                    <a href="@Url.Action("Index","UserRoleMVC")">User Roles</a><br />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div style="margin-right:100px; height: 400px;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
 </body>
 </html>

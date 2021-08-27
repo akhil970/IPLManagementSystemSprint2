@@ -260,6 +260,7 @@
     <Content Include="Views\Shared\_HomePageLayout.cshtml" />
     <Content Include="Views\HomePage\Index.cshtml" />
     <Content Include="Views\HomePage\Employee.cshtml" />
+    <Content Include="Views\HomePage\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
