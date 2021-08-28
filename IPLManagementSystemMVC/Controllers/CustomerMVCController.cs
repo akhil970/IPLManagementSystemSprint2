@@ -9,6 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class CustomerMVCController : Controller
     {
+        //AllTableJoinsMVC teamsAndPlayers = new AllTableJoinsMVC();
         public ActionResult Index()
         {
             return View();
@@ -21,32 +22,42 @@ namespace IPLManagementSystemMVC.Controllers
             using (HttpClient client = new HttpClient())
             {
                 SelectList TeamSL=null;
-                SelectList PlayerSL=null;
                 var teamNames = client.GetAsync("https://localhost:44307/api/Customer/Teamspresent").Result;
                 if (teamNames.IsSuccessStatusCode)
                 {
                     teamsAndPlayers = teamNames.Content.ReadAsAsync<AllTableJoinsMVC>().Result;
-                    TeamSL = new SelectList(teamsAndPlayers.Team, "Name", "Name");
+                    TeamSL = new SelectList(teamsAndPlayers.Team, "Id", "Name");
                     TempData["TeamSL"] = TeamSL;
                     TempData.Keep();
-                    if (TeamSL.SelectedValue is null)
-                    {
-                        ViewBag.Data = "Hello";
-                    }
-                    else
-                    {
-                        var playerNames = client.GetAsync("https://localhost:44307/api/CustomerPlayer/GetPlayersofTeam/"+ (string)TeamSL.SelectedValue).Result;
-                        if (playerNames.IsSuccessStatusCode)
-                        {
-                            teamsAndPlayers = playerNames.Content.ReadAsAsync<AllTableJoinsMVC>().Result;
-                            PlayerSL = new SelectList(teamsAndPlayers.Player, "Name", "Name");
-                            TempData["PlayerSL"] = PlayerSL;
-                            TempData.Keep();
-                        }
-                    }
                 }
             }
             return View();
+        }
+        public ActionResult PlayersList(int? id)
+        {
+            if(id is null)
+            {
+                return View("TeamsAndPlayers");
+            }
+            else
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    AllTableJoinsMVC teamsAndPlayers = new AllTableJoinsMVC();
+                    List<Player> playerNames = new List<Player>();
+                    SelectList PlayerSL = null;
+                    var result = client.GetAsync("https://localhost:44307/api/CustomerPlayer/" + id).Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        playerNames = result.Content.ReadAsAsync<List<Player>>().Result;
+                        PlayerSL = new SelectList(playerNames, "Id", "Name");
+                        TempData["PlayerSL"] = PlayerSL;
+                        TempData.Keep();
+                    }
+                    return View("TeamsAndPlayers");
+                }
+            }
+            
         }
         //Completed matches
         public ActionResult Matches()

@@ -201,5 +201,23 @@ namespace IPLManagementSystemWEBAPI.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Player>("GetPlayers", mergeOption, teamNameParameter);
         }
+    
+        public virtual ObjectResult<string> usp_customer_playernames_teamid(Nullable<int> teamid)
+        {
+            var teamidParameter = teamid.HasValue ?
+                new ObjectParameter("teamid", teamid) :
+                new ObjectParameter("teamid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_customer_playernames_teamid", teamidParameter);
+        }
+    
+        public virtual ObjectResult<usp_customer_playeridnames_teamid_Result> usp_customer_playeridnames_teamid(Nullable<int> teamid)
+        {
+            var teamidParameter = teamid.HasValue ?
+                new ObjectParameter("teamid", teamid) :
+                new ObjectParameter("teamid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_customer_playeridnames_teamid_Result>("usp_customer_playeridnames_teamid", teamidParameter);
+        }
     }
 }

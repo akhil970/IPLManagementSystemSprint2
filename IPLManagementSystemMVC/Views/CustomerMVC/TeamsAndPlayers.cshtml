@@ -3,31 +3,49 @@
     ViewBag.Title = "TeamsAndPlayers";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
+<!DOCTYPE html>
+<head>
 
-<h2>Create</h2>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#ddlTeamname").change(function () {
+                var $this = $(this);
+                var url = $this.parent().data("submit-url") +"/"+ $this.val();
+                window.location.href = url;
+                window.location.href = url.replace(url, "https://localhost:44349/CustomerMVC/TeamsAndPlayers");
+            });
 
-@using (Html.BeginForm("TeamsAndPlayers", "CustomerMVC", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+        });
+    </script>
+</head>
+<body>
+    <h2>Create</h2>
+    @using (Html.BeginForm("TeamsAndPlayers", "CustomerMVC", FormMethod.Post ))
+    {
+        @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Teams And Players</h4>
-    <hr />
-    <div class="form-group">
-        @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(n => n.Team, TempData["TeamSL"] as SelectList, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Team, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <h4>Teams And Players</h4>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" data-submit-url="@Url.Action("PlayersList","CustomerMVC")">
+                    @Html.DropDownListFor(n => n.Team, TempData["TeamSL"] as SelectList, "---Select---", new { @class = "form-control", @id = "ddlTeamname"})
+                    @Html.ValidationMessageFor(model => model.Team, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @if (!(TempData["PlayerSL"] is null))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Player, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(n => n.Player, TempData["PlayerSL"] as SelectList, "---Select---", new { @class = "form-control", @id = "ddlPlayername"})
+                        @Html.ValidationMessageFor(model => model.Player, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
         </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Player, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(n => n.Player, TempData["PlayerSL"] as SelectList, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Player, "", new { @class = "text-danger" })
-        </div>
-    </div>
-</div>
-}
-
+    }
+</body>

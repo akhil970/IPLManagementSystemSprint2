@@ -308,6 +308,12 @@
         <Function Name="usp_customer_player_selection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PlayerName" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="usp_customer_playeridnames_teamid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teamid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_customer_playernames_teamid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="teamid" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_customer_team_selection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TeamName" Type="varchar" Mode="In" />
         </Function>
@@ -836,7 +842,13 @@
           <FunctionImport Name="usp_allStatistics_view" ReturnType="Collection(IPLDbModel.usp_allStatistics_view_Result)" />
           <FunctionImport Name="GetTeamNames" EntitySet="Teams" ReturnType="Collection(IPLDbModel.Team)" />
           <FunctionImport Name="GetPlayers" EntitySet="Players" ReturnType="Collection(IPLDbModel.Player)">
-            <Parameter Name="TeamName" Mode="In" Type="String" />
+          <Parameter Name="TeamName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_customer_playernames_teamid" ReturnType="Collection(String)">
+          <Parameter Name="teamid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_customer_playeridnames_teamid" ReturnType="Collection(IPLDbModel.usp_customer_playeridnames_teamid_Result)">
+            <Parameter Name="teamid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="customer_news_view_Result">
@@ -885,6 +897,10 @@
           <Property Type="Int32" Name="NoResult" Nullable="false" />
           <Property Type="Decimal" Name="NRR" Nullable="false" Precision="18" Scale="0" />
           <Property Type="Int32" Name="Points" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_customer_playeridnames_teamid_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="40" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1133,6 +1149,15 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetTeamNames" FunctionName="IPLDbModel.Store.usp_customer_teamnames" />
           <FunctionImportMapping FunctionImportName="GetPlayers" FunctionName="IPLDbModel.Store.usp_customer_team_selection" />
+          <FunctionImportMapping FunctionImportName="usp_customer_playernames_teamid" FunctionName="IPLDbModel.Store.usp_customer_playernames_teamid" />
+          <FunctionImportMapping FunctionImportName="usp_customer_playeridnames_teamid" FunctionName="IPLDbModel.Store.usp_customer_playeridnames_teamid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_customer_playeridnames_teamid_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
