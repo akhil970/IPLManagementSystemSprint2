@@ -76,12 +76,12 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
-            string pass = BitConverter.ToString(user.password);
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-           
+            string pass = BitConverter.ToString(user.password);
             db.usp_users_insert(user.UserId, user.Username, user.FirstName, user.LastName, pass);
 
             //db.Users.Add(user);
