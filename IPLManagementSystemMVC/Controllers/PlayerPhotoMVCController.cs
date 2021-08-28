@@ -9,7 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class PlayerPhotoMVCController : Controller
     {
-        [OutputCache(Duration = 60, VaryByParam = "none")]
+
         // GET: PlayerPhotoMVC
         public ActionResult Index()
         {

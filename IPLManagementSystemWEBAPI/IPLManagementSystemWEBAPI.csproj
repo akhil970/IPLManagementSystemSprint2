@@ -163,6 +163,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AllStatisticsController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomerPlayerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Models\AllStatistic.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AllTablesListData.cs" />
     <Compile Include="Models\customer_news_view_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
@@ -245,6 +248,9 @@
     <Compile Include="Models\UserRole.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_allStatistics_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_customer_matches_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
@@ -274,6 +280,74 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\CSK\Bravo.png" />
+    <Content Include="Images\CSK\chahar.png" />
+    <Content Include="Images\CSK\Dhoni.png" />
+    <Content Include="Images\CSK\duplessis.png" />
+    <Content Include="Images\CSK\Gaikwad.png" />
+    <Content Include="Images\CSK\Imran.png" />
+    <Content Include="Images\CSK\Jaddu.png" />
+    <Content Include="Images\CSK\MeenAli.png" />
+    <Content Include="Images\CSK\Pujara.png" />
+    <Content Include="Images\CSK\raina.png" />
+    <Content Include="Images\CSK\sharma.png" />
+    <Content Include="Images\CSK\Thakur.png" />
+    <Content Include="Images\Logos\bcci.gif" />
+    <Content Include="Images\Logos\csk.gif" />
+    <Content Include="Images\Logos\ipl_logo.gif" />
+    <Content Include="Images\Logos\kxip.gif" />
+    <Content Include="Images\Logos\mi.gif" />
+    <Content Include="Images\Logos\rcb.gif" />
+    <Content Include="Images\Logos\srh.jpeg" />
+    <Content Include="Images\MI\Ankul Roy.jpg" />
+    <Content Include="Images\MI\Arjun Tendulkar.jpg" />
+    <Content Include="Images\MI\Chris Lynn.jpg" />
+    <Content Include="Images\MI\Dhawal Kulkarni.jpg" />
+    <Content Include="Images\MI\hp.jpg" />
+    <Content Include="Images\MI\ik.jpg" />
+    <Content Include="Images\MI\Jayanth Yadav.jpg" />
+    <Content Include="Images\MI\jb.jpg" />
+    <Content Include="Images\MI\Kieron Pollard.jpg" />
+    <Content Include="Images\MI\Krunal Pandya.jpg" />
+    <Content Include="Images\MI\Piyush Chawla.jpg" />
+    <Content Include="Images\MI\Quinton de Kock.jpg" />
+    <Content Include="Images\MI\Rahul Chahar.jpg" />
+    <Content Include="Images\MI\rs.jpg" />
+    <Content Include="Images\MI\sky.jpg" />
+    <Content Include="Images\MP\cskvsmi.png" />
+    <Content Include="Images\MP\cskvsrcb.png" />
+    <Content Include="Images\MP\cskvssrh.png" />
+    <Content Include="Images\MP\mivsrcb.png" />
+    <Content Include="Images\MP\mivssrh.png" />
+    <Content Include="Images\MP\srhvsrcb.jpg" />
+    <Content Include="Images\MP\srhvsrcb.png" />
+    <Content Include="Images\RCB\abd.jpg" />
+    <Content Include="Images\RCB\DANIEL SAMS.jpg" />
+    <Content Include="Images\RCB\devpad.jpg" />
+    <Content Include="Images\RCB\gmax.jpg" />
+    <Content Include="Images\RCB\HARSHAL PATEL.jpg" />
+    <Content Include="Images\RCB\KANE RICHARDSON.jpg" />
+    <Content Include="Images\RCB\msiraj.jpg" />
+    <Content Include="Images\RCB\NAVDEEP SAINI.jpg" />
+    <Content Include="Images\RCB\vk.jpg" />
+    <Content Include="Images\RCB\WASHINGTON SUNDAR.jpg" />
+    <Content Include="Images\RCB\YUZVENDRA CHAHAL.jpg" />
+    <Content Include="Images\RCB\ZAMPA.jpg" />
+    <Content Include="Images\SRH\bairstow.png" />
+    <Content Include="Images\SRH\bhuvi.png" />
+    <Content Include="Images\SRH\holder.png" />
+    <Content Include="Images\SRH\jadhav.png" />
+    <Content Include="Images\SRH\jason roy.png" />
+    <Content Include="Images\SRH\Kane.png" />
+    <Content Include="Images\SRH\manish.png" />
+    <Content Include="Images\SRH\nabi.png" />
+    <Content Include="Images\SRH\natarajan.png" />
+    <Content Include="Images\SRH\rashid.png" />
+    <Content Include="Images\SRH\saha.png" />
+    <Content Include="Images\SRH\sandeep.png" />
+    <Content Include="Images\SRH\siddarth kaul.png" />
+    <Content Include="Images\SRH\vijay shankar.png" />
+    <Content Include="Images\SRH\warner.png" />
     <Content Include="Models\IPLDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IPLDbModel.Context.cs</LastGenOutput>

@@ -168,5 +168,38 @@ namespace IPLManagementSystemWEBAPI.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_login_Result>("usp_login", usernameParameter);
         }
+    
+        public virtual ObjectResult<usp_allStatistics_view_Result> usp_allStatistics_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_allStatistics_view_Result>("usp_allStatistics_view");
+        }
+    
+        public virtual ObjectResult<Team> GetTeamNames()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Team>("GetTeamNames");
+        }
+    
+        public virtual ObjectResult<Team> GetTeamNames(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Team>("GetTeamNames", mergeOption);
+        }
+    
+        public virtual ObjectResult<Player> GetPlayers(string teamName)
+        {
+            var teamNameParameter = teamName != null ?
+                new ObjectParameter("TeamName", teamName) :
+                new ObjectParameter("TeamName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Player>("GetPlayers", teamNameParameter);
+        }
+    
+        public virtual ObjectResult<Player> GetPlayers(string teamName, MergeOption mergeOption)
+        {
+            var teamNameParameter = teamName != null ?
+                new ObjectParameter("TeamName", teamName) :
+                new ObjectParameter("TeamName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Player>("GetPlayers", mergeOption, teamNameParameter);
+        }
     }
 }

@@ -17,9 +17,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/PlayerPhotoes
-        public IQueryable<PlayerPhoto> GetPlayerPhotoes()
+        public IHttpActionResult GetPlayerPhotoes()
         {
-            return db.PlayerPhotoes;
+            var playerphotos = db.PlayerPhotoes.Select(p => new { p.Id, p.Photo });
+            return Ok(playerphotos);
         }
 
         // GET: api/PlayerPhotoes/5

@@ -1,0 +1,33 @@
+﻿@model IPLManagementSystemMVC.Models.AllTableJoinsMVC
+@{
+    ViewBag.Title = "TeamsAndPlayers";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("TeamsAndPlayers", "CustomerMVC", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Teams And Players</h4>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Team, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(n => n.Team, TempData["TeamSL"] as SelectList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Team, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Player, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(n => n.Player, TempData["PlayerSL"] as SelectList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Player, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+}
+

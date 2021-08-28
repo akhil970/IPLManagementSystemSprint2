@@ -302,6 +302,7 @@
         </Association>
         <Function Name="customer_news_view" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="customer_ticket_category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_allStatistics_view" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_customer_match_selection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_customer_matches" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_customer_player_selection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -832,6 +833,11 @@
           <FunctionImport Name="usp_login" ReturnType="Collection(IPLDbModel.usp_login_Result)">
           <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="usp_allStatistics_view" ReturnType="Collection(IPLDbModel.usp_allStatistics_view_Result)" />
+          <FunctionImport Name="GetTeamNames" EntitySet="Teams" ReturnType="Collection(IPLDbModel.Team)" />
+          <FunctionImport Name="GetPlayers" EntitySet="Players" ReturnType="Collection(IPLDbModel.Player)">
+            <Parameter Name="TeamName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="customer_news_view_Result">
           <Property Type="DateTime" Name="Date" Nullable="false" />
@@ -868,6 +874,17 @@
           <Property Type="String" Name="firstname" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="lastname" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="Password" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="usp_allStatistics_view_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="TeamId" Nullable="false" />
+          <Property Type="Int32" Name="Played" Nullable="true" />
+          <Property Type="Int32" Name="Won" Nullable="false" />
+          <Property Type="Int32" Name="Lost" Nullable="false" />
+          <Property Type="Int32" Name="Tied" Nullable="false" />
+          <Property Type="Int32" Name="NoResult" Nullable="false" />
+          <Property Type="Decimal" Name="NRR" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Points" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1099,6 +1116,23 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_allStatistics_view" FunctionName="IPLDbModel.Store.usp_allStatistics_view">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_allStatistics_view_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="Played" ColumnName="Played" />
+                <ScalarProperty Name="Won" ColumnName="Won" />
+                <ScalarProperty Name="Lost" ColumnName="Lost" />
+                <ScalarProperty Name="Tied" ColumnName="Tied" />
+                <ScalarProperty Name="NoResult" ColumnName="NoResult" />
+                <ScalarProperty Name="NRR" ColumnName="NRR" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTeamNames" FunctionName="IPLDbModel.Store.usp_customer_teamnames" />
+          <FunctionImportMapping FunctionImportName="GetPlayers" FunctionName="IPLDbModel.Store.usp_customer_team_selection" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
