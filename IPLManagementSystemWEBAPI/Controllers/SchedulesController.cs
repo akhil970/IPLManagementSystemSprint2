@@ -17,9 +17,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/Schedules
-        public IQueryable<Schedule> GetSchedules()
+        public IHttpActionResult GetSchedules()
         {
-            return db.Schedules;
+            var scheduleList = db.Schedules.Select(s => new { s.Id, s.MatchId, s.Start_Time, s.End_Time, s.VenueId,s.Date });
+            return Ok(scheduleList);
         }
 
         // GET: api/Schedules/5

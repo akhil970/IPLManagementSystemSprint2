@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel.DataAnnotations;
 namespace IPLManagementSystemMVC.Models
 {
     public class PlayerPhoto
@@ -12,8 +12,12 @@ namespace IPLManagementSystemMVC.Models
         {
             this.Players = new HashSet<Player>();
         }
-
+        [Required(ErrorMessage = "Enter Photo ID")]
         public int Id { get; set; }
+
+        [DataType(DataType.ImageUrl, ErrorMessage = "Enter Proper Photo URL")]
+        [Required(ErrorMessage = "Enter Photo URL")]
+        [Display(Name = "Photo URL")]
         public string Photo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

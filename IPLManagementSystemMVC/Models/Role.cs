@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel.DataAnnotations;
 namespace IPLManagementSystemMVC.Models
 {
     public class Role
@@ -12,8 +12,13 @@ namespace IPLManagementSystemMVC.Models
         {
             this.UserRoles = new HashSet<UserRole>();
         }
-
+        [Range(1, 3, ErrorMessage = "Enter Proper Role Id")]
+        [Required(ErrorMessage = "Enter Role ID")]
+        [Display(Name = "Role ID")]
         public int RoleId { get; set; }
+
+        [Required(ErrorMessage = "Enter Role Name")]
+        [Display(Name = "Role Name")]
         public string RoleName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

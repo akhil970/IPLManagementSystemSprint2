@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel.DataAnnotations;
 namespace IPLManagementSystemMVC.Models
 {
     public class Match
@@ -13,12 +13,29 @@ namespace IPLManagementSystemMVC.Models
             this.News = new HashSet<News>();
             this.Tickets = new HashSet<Ticket>();
         }
-
+        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
+        [Required(ErrorMessage = "Enter Match ID")]
         public int Id { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
+        [Required(ErrorMessage = "Enter Match ID")]
         public int TeamOneId { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
+        [Required(ErrorMessage = "Enter Match ID")]
         public int TeamTwoId { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
+        [Required(ErrorMessage = "Enter Match ID")]
         public int VenueId { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
+        [Required(ErrorMessage = "Enter Match ID")]
         public Nullable<int> ScheduleId { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
+        [Required(ErrorMessage = "Enter Match ID")]
+        [DataType(DataType.ImageUrl, ErrorMessage = "Enter Proper Image URL")]
         public string MatchPhoto { get; set; }
 
         public virtual Team Team { get; set; }

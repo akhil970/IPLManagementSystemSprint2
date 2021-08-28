@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel.DataAnnotations;
 namespace IPLManagementSystemMVC.Models
 {
     public class UserRole
     {
-            public int UserId { get; set; }
-            public int RoleId { get; set; }
-            public int Id { get; set; }
+        [Required(ErrorMessage = "Enter User ID")]
+        [Display(Name = "User ID")]
+        public int UserId { get; set; }
 
-            public virtual Role Role { get; set; }
-            public virtual User User { get; set; }
+        [Required(ErrorMessage = "Enter Role ID")]
+        [Display(Name = "Role ID")]
+        public int RoleId { get; set; }
+
+        public int Id { get; set; }
+
+        public virtual Role Role { get; set; }
+        public virtual User User { get; set; }
         
     }
 }

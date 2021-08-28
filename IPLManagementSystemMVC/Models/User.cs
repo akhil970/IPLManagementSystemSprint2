@@ -8,21 +8,36 @@ namespace IPLManagementSystemMVC.Models
 {
     public class User
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        //public User()
-        //{
-        //    this.UserRoles = new HashSet<UserRole>();
-        //}
-
+        [Range(1,int.MaxValue, ErrorMessage = "Enter Proper User Id")]
+        [Required(ErrorMessage = "Enter UserId")]
+        [Display(Name = "User ID")]
         public int UserId { get; set; }
+
+        [DataType(DataType.EmailAddress, ErrorMessage ="Please Enter proper email id")]
+        [Required(ErrorMessage = "Enter Email Address")]
+        [Display(Name = "Username")]
         public string Username { get; set; }
+
+        [DataType(DataType.Text, ErrorMessage = "Please Enter First Name")]
+        [Required(ErrorMessage = "Enter First Name")]
+        [Display(Name = "Firstname")]
         public string FirstName { get; set; }
+
+        [DataType(DataType.Text, ErrorMessage = "Please Enter Last Name")]
+        [Required(ErrorMessage = "Enter Last Name")]
+        [Display(Name = "Lastname")]
         public string LastName { get; set; }
-        //public byte[] password { get; set; }
+
+        [DataType(DataType.Password, ErrorMessage ="Please Enter Valid Password")]
+        [MinLength(6)]
+        [Required(ErrorMessage = "Enter Password")]
+        [Display(Name = "Password")]
         public string password { get; set; }
-        
-        
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<UserRole> UserRoles { get; set; }
+
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "Enter Confirm Password")]
+        [Compare("password")]
+        [Display(Name = "Confirm Password")]
+        public string ConfirmPassword { get; set; }
     }
 }

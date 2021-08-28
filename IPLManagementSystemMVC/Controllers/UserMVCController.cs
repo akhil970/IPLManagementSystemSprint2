@@ -5,18 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using IPLManagementSystemMVC.Models;
 using System.Net.Http;
-using System.Text;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class UserTable
-    {
-        public int NUserId { set; get; }
-        public string NUsername { set; get; }
-        public string NFirstname { set; get; }
-        public string NLastname { set; get; }
-        public byte[] NPassword { set; get; }
-    }
-
     public class UserMVCController : Controller
     {
         // GET: UserMVC
@@ -46,6 +36,7 @@ namespace IPLManagementSystemMVC.Controllers
         {
             try
             {
+                var pwd = userdata.password;
                 using (HttpClient client = new HttpClient())
                 {
                     var result = client.PostAsJsonAsync("https://localhost:44307/api/users1", userdata).Result;
@@ -65,6 +56,7 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: UserMVC/Edit/5
         public ActionResult UpdateUser(int id)
         {
+            
             User users = new User();
             using (HttpClient client = new HttpClient())
             {
@@ -80,13 +72,13 @@ namespace IPLManagementSystemMVC.Controllers
 
         // POST: UserMVC/Edit/5
         [HttpPost]
-        public ActionResult UpdateUser(User userdata)
+        public ActionResult UpdateUser(User userData)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/users1/" + userdata.UserId.ToString(), userdata).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/users1/" + userData.UserId.ToString(), userData).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
