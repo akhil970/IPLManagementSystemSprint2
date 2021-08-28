@@ -14,7 +14,6 @@ namespace IPLManagementSystemMVC.Models
         [Required(ErrorMessage = "Enter Role ID")]
         [Display(Name = "Role ID")]
         public int RoleId { get; set; }
-
         public int Id { get; set; }
 
         public virtual Role Role { get; set; }

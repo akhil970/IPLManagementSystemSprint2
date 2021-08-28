@@ -11,8 +11,7 @@ namespace IPLManagementSystemMVC.Models
         [Required(ErrorMessage = "Enter Schedule ID")]
         public int Id { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
-        [Required(ErrorMessage = "Enter Match ID")]
+        //[Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
         public Nullable<int> MatchId { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Venue ID")]
