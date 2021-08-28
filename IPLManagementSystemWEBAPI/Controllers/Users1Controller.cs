@@ -8,23 +8,22 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Text;
 using IPLManagementSystemWEBAPI.Models;
 
 namespace IPLManagementSystemWEBAPI.Controllers
 {
-    public class UsersController : ApiController
+    public class Users1Controller : ApiController
     {
         private IPLDBEntities db = new IPLDBEntities();
-        
-        // GET: api/Users
+
+        // GET: api/Users1
         public IQueryable<User> GetUsers()
         {
-            //var usersList = db.Users.Select(u => new { u.UserId, u.Username, u.FirstName, u.LastName, });
             return db.Users;
-            //return Ok(usersList);
         }
 
-        // GET: api/Users/5
+        // GET: api/Users1/5
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
@@ -33,10 +32,11 @@ namespace IPLManagementSystemWEBAPI.Controllers
             {
                 return NotFound();
             }
+
             return Ok(user);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Users1/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(int id, User user)
         {
@@ -49,8 +49,8 @@ namespace IPLManagementSystemWEBAPI.Controllers
             {
                 return BadRequest();
             }
-            //Just checking
             db.usp_Users_update(user.UserId, user.Username, user.FirstName, user.LastName, BitConverter.ToString(user.password));
+
             //db.Entry(user).State = EntityState.Modified;
 
             try
@@ -72,20 +72,19 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
+        // POST: api/Users1
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            string pass = BitConverter.ToString(user.password);
+            db.usp_users_insert(user.UserId, user.Username, user.FirstName, user.LastName, pass);
 
             //db.Users.Add(user);
-            //Just Checking
-
-            db.usp_users_insert(user.UserId, user.Username, user.FirstName, user.LastName, BitConverter.ToString(user.password));
-
 
             try
             {
@@ -106,7 +105,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Users1/5
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {

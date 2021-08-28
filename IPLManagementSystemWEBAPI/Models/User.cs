@@ -25,8 +25,7 @@ namespace IPLManagementSystemWEBAPI.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public byte[] password { get; set; }
-
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }
