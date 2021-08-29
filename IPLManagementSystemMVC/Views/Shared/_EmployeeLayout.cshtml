@@ -38,10 +38,15 @@
             <a href="#" class="nav-item nav-link">Home</a>
             <a href="#" class="nav-item nav-link">About Us</a>
         </div>
-        <!--For Login and Register links -->
-        <div class="navbar-nav">
-            <a href="#" class="nav-item nav-link" style="padding:10px;font-size:medium;">Logout</a>
+        <div class="collapse navbar-collapse" style="float:right !important" id="navbarCollapse">
+            @if (Session["Username"] != null)
+            {
+                <h4 style="color:white">Hello @Session["Username"]</h4>
+                @Html.ActionLink("Logout", "Logout", "HomePage")
+            }
+
         </div>
+
     </nav>
     <!--Body Row-->
     <div class="row">

@@ -9,16 +9,18 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class HomePageController : Controller
     {
-        // GET: HomePage
+        // For HomePage
         public ActionResult Index()
         {
             return View();
         }
+
+        //User Login
         public ActionResult Login()
         {
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult Login(LoginViewModel login)
         {
@@ -31,6 +33,7 @@ namespace IPLManagementSystemMVC.Controllers
                 {
                     userdetails = result.Content.ReadAsAsync<List<LoginViewModel>>().Result;
                     var useridofclient = userdetails.Select(id => id.UserID).FirstOrDefault();
+                    var nameOfUser = userdetails.Select(fn => fn.Firstname).FirstOrDefault() +" "+ userdetails.Select(fn => fn.Lastname).FirstOrDefault();
                     var actualPassword = userdetails.Select(e => e.Password).FirstOrDefault();
                     if (actualPassword == login.Password)
                     {
@@ -41,35 +44,79 @@ namespace IPLManagementSystemMVC.Controllers
                             //Session["Username"] = userdetails.Firstname.ToString() + userdetails.Lastname.ToString();
                             roleData = resultOfRoleId.Content.ReadAsAsync<List<RoleViewModel>>().Result;
                             var roleId = roleData.Select(e => e.Roleid).FirstOrDefault();
-                            switch (roleId)
+                            if(roleId == 0 | roleData is null)
                             {
-                                case 1:
-                                    return RedirectToAction("Admin");
-                                case 2:
-                                    return RedirectToAction("Employee");
-                                case 3:
-                                    return RedirectToAction("Customer");
+                                return RedirectToAction("Customer");
+                            }
+                            else 
+                            {
+                                switch (roleId)
+                                {
+                                    case 1:
+                                        Session["Username"] = nameOfUser;
+                                        return RedirectToAction("Admin");
+                                    case 2:
+                                        Session["Username"] = nameOfUser;
+                                        return RedirectToAction("Employee");
+                                    case 3:
+                                        Session["Username"] = nameOfUser;
+                                        return RedirectToAction("Customer");
+                                }
                             }
                         }
                     }
                     else
                     {
-                        ViewBag.Notification("Invalid Password");
+                        //ViewBag.Notification("Invalid Password");
+                        return View();
                     }
                 }
                 else
                 {
+                    //ViewBag.Notification("Invalid Username");
                     return View();
-                    //ViewBag.Notification("Invalid Username or User Does Not Exists");
                 }
                 
             }
             return View();
         }
-        [HttpPost]
+        //For Logout
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "HomePage");
+        }
+
+        //Customer Registration Part
         public ActionResult Register()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Register(UserRegister userRegister)
+        {
+            try
+            {
+                UsersViewModel userreg = new UsersViewModel()
+                {
+                    Username = userRegister.Username,Firstname = userRegister.Firstname, Lastname = userRegister.Lastname, Password = userRegister.Password
+                };
+                using (HttpClient client = new HttpClient())
+                {
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/usersn", userreg).Result;
+                    
+                    if (result.IsSuccessStatusCode)
+                    {
+                        Session["Username"] = userRegister.Firstname + userRegister.Lastname;
+                        return RedirectToAction("Customer");
+                    }
+                }
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
         }
         public ActionResult Employee()
         {
@@ -82,11 +129,6 @@ namespace IPLManagementSystemMVC.Controllers
         public ActionResult Customer()
         {
             return View();
-        }
-        public ActionResult Logout()
-        {
-            Session.Clear();
-            return RedirectToAction("Index", "HomePage");
         }
     }
 }

@@ -7,38 +7,38 @@ using IPLManagementSystemMVC.Models;
 using System.Net.Http;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class UserMVCController : Controller
+    public class UsersController : Controller
     {
-        // GET: UserMVC
+        // GET: Users
         public ActionResult Index()
         {
-            List<User> usersview = new List<User>();
+            List<UsersViewModel> usersview = new List<UsersViewModel>();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/users1").Result;
+                var result = client.GetAsync("https://localhost:44307/api/usersn").Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    usersview = result.Content.ReadAsAsync<List<User>>().Result;
+                    usersview = result.Content.ReadAsAsync<List<UsersViewModel>>().Result;
                 }
             }
             return View(usersview);
         }
 
-        // GET: UserMVC/Create
+        // GET: Users/Create
         public ActionResult InsertUser()
         {
             return View();
         }
 
-        // POST: UserMVC/Create
+        // POST: Users/Create
         [HttpPost]
-        public ActionResult InsertUser(User userdata)
+        public ActionResult InsertUser(UsersViewModel userdata)
         {
             try
-            { 
+            {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/users1", userdata).Result;
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/usersn", userdata).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -52,32 +52,31 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: UserMVC/Edit/5
+        // GET: Users/Edit/5
         public ActionResult UpdateUser(int id)
         {
-            
-            User users = new User();
+            UsersViewModel users = new UsersViewModel();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/users1/" + id.ToString()).Result;
+                var result = client.GetAsync("https://localhost:44307/api/usersn/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    users = result.Content.ReadAsAsync<User>().Result;
+                    users = result.Content.ReadAsAsync<UsersViewModel>().Result;
                     return View(users);
                 }
             }
             return View();
         }
 
-        // POST: UserMVC/Edit/5
+        // POST: Users/Edit/5
         [HttpPost]
-        public ActionResult UpdateUser(User userData)
+        public ActionResult UpdateUser(UsersViewModel userData)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/users1/" + userData.UserId.ToString(), userData).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/usersn/" + userData.UserID.ToString(), userData).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");

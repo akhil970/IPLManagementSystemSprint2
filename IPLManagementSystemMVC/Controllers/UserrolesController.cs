@@ -3,42 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using IPLManagementSystemMVC.Models;
 using System.Net.Http;
+using IPLManagementSystemMVC.Models;
 namespace IPLManagementSystemMVC.Controllers
 {
-    public class UserMVCController : Controller
+    public class UserrolesController : Controller
     {
-        // GET: UserMVC
+        // GET: Userroles
         public ActionResult Index()
         {
-            List<User> usersview = new List<User>();
+            List<UserRolesViewModel> userRolesList = new List<UserRolesViewModel>();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/users1").Result;
+                //To get the response code from the url specified if ok we will read the data
+                var result = client.GetAsync("https://localhost:44307/api/userrolesn").Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    usersview = result.Content.ReadAsAsync<List<User>>().Result;
+                    userRolesList = result.Content.ReadAsAsync<List<UserRolesViewModel>>().Result;
                 }
             }
-            return View(usersview);
+            return View(userRolesList);
         }
 
-        // GET: UserMVC/Create
-        public ActionResult InsertUser()
+        // GET: Userroles/Create
+        public ActionResult InsertUserRole()
         {
             return View();
         }
 
-        // POST: UserMVC/Create
+        // POST: Userroles/Create
         [HttpPost]
-        public ActionResult InsertUser(User userdata)
+        public ActionResult InsertUserRole(UserRolesViewModel userRolesData)
         {
             try
-            { 
+            {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/users1", userdata).Result;
+                    var result = client.PostAsJsonAsync("https://localhost:44307/api/userrolesn", userRolesData).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -52,32 +53,31 @@ namespace IPLManagementSystemMVC.Controllers
             }
         }
 
-        // GET: UserMVC/Edit/5
-        public ActionResult UpdateUser(int id)
+        // GET: Userroles/Edit/5
+        public ActionResult UpdateUserRole(int id)
         {
-            
-            User users = new User();
+            UserRolesViewModel userRole = new UserRolesViewModel();
             using (HttpClient client = new HttpClient())
             {
-                var result = client.GetAsync("https://localhost:44307/api/users1/" + id.ToString()).Result;
+                var result = client.GetAsync("https://localhost:44307/api/userrolesn/" + id.ToString()).Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    users = result.Content.ReadAsAsync<User>().Result;
-                    return View(users);
+                    userRole = result.Content.ReadAsAsync<UserRolesViewModel>().Result;
+                    return View(userRole);
                 }
             }
             return View();
         }
 
-        // POST: UserMVC/Edit/5
+        // POST: Userroles/Edit/5
         [HttpPost]
-        public ActionResult UpdateUser(User userData)
+        public ActionResult UpdateUserRole(UserRolesViewModel userRole)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/users1/" + userData.UserId.ToString(), userData).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/userrolesn/" + userRole.Id.ToString(), userRole).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");
@@ -90,5 +90,6 @@ namespace IPLManagementSystemMVC.Controllers
                 return View();
             }
         }
+
     }
 }
