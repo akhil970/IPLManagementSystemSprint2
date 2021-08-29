@@ -166,10 +166,12 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerPlayerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PlayerPhotoesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
+    <Compile Include="Controllers\RoleIdController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\SpecialityController.cs" />
@@ -248,6 +250,12 @@
     <Compile Include="Models\UserRole.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserRolesTable.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsersTable.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_allStatistics_view_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
@@ -267,6 +275,12 @@
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_login_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_newLogin_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_newRoleId_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Venue.cs">
@@ -412,6 +426,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

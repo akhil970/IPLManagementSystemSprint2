@@ -43,6 +43,8 @@ namespace IPLManagementSystemWEBAPI.Models
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
+        public virtual DbSet<UserRolesTable> UserRolesTables { get; set; }
+        public virtual DbSet<UsersTable> UsersTables { get; set; }
     
         public virtual ObjectResult<customer_news_view_Result> customer_news_view()
         {
@@ -218,6 +220,24 @@ namespace IPLManagementSystemWEBAPI.Models
                 new ObjectParameter("teamid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_customer_playeridnames_teamid_Result>("usp_customer_playeridnames_teamid", teamidParameter);
+        }
+    
+        public virtual ObjectResult<usp_newLogin_Result> usp_newLogin(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_newLogin_Result>("usp_newLogin", usernameParameter);
+        }
+    
+        public virtual ObjectResult<usp_newRoleId_Result> usp_newRoleId(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_newRoleId_Result>("usp_newRoleId", useridParameter);
         }
     }
 }

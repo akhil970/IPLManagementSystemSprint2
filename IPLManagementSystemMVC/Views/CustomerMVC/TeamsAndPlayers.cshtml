@@ -20,7 +20,6 @@
     </script>
 </head>
 <body>
-    <h2>Create</h2>
     @using (Html.BeginForm("TeamsAndPlayers", "CustomerMVC", FormMethod.Post ))
     {
         @Html.AntiForgeryToken()
@@ -35,7 +34,6 @@
                     @Html.ValidationMessageFor(model => model.Team, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             @if (!(TempData["PlayerSL"] is null))
             {
                 <div class="form-group">

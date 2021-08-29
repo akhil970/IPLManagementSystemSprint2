@@ -126,6 +126,14 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserRolesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -135,6 +143,16 @@
           <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="30" />
           <Property Name="password" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UsersTable">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Firstname" Type="varchar" MaxLength="100" />
+          <Property Name="Lastname" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Venue">
           <Key>
@@ -300,6 +318,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_userrolestable_roleid">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="UserRolesTable" Type="Self.UserRolesTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRolesTable">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userrolestable_userid">
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="0..1" />
+          <End Role="UserRolesTable" Type="Self.UserRolesTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRolesTable">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="customer_news_view" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="customer_ticket_category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_allStatistics_view" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -324,6 +366,12 @@
         </Function>
         <Function Name="usp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_newLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_newRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_roleid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userid" Type="int" Mode="In" />
@@ -356,7 +404,9 @@
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketCategory" EntityType="Self.TicketCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRolesTable" EntityType="Self.UserRolesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersTable" EntityType="Self.UsersTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_Match_TeamOneId" Association="Self.fk_Match_TeamOneId">
             <End Role="Team" EntitySet="Team" />
@@ -409,6 +459,14 @@
           <AssociationSet Name="fk_userroles_userid" Association="Self.fk_userroles_userid">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userrolestable_roleid" Association="Self.fk_userrolestable_roleid">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRolesTable" EntitySet="UserRolesTable" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userrolestable_userid" Association="Self.fk_userrolestable_userid">
+            <End Role="UsersTable" EntitySet="UsersTable" />
+            <End Role="UserRolesTable" EntitySet="UserRolesTable" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -485,6 +543,7 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="UserRoles" Relationship="Self.fk_userroles_roleid" FromRole="Roles" ToRole="UserRoles" />
+          <NavigationProperty Name="UserRolesTables" Relationship="IPLDbModel.fk_userrolestable_roleid" FromRole="Role" ToRole="UserRolesTable" />
         </EntityType>
         <EntityType Name="Schedule">
           <Key>
@@ -848,8 +907,24 @@
           <Parameter Name="teamid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_customer_playeridnames_teamid" ReturnType="Collection(IPLDbModel.usp_customer_playeridnames_teamid_Result)">
-            <Parameter Name="teamid" Mode="In" Type="Int32" />
+          <Parameter Name="teamid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="usp_newLogin" ReturnType="Collection(IPLDbModel.usp_newLogin_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_newRoleId" ReturnType="Collection(IPLDbModel.usp_newRoleId_Result)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="UserRolesTables" EntityType="IPLDbModel.UserRolesTable" />
+          <EntitySet Name="UsersTables" EntityType="IPLDbModel.UsersTable" />
+          <AssociationSet Name="fk_userrolestable_roleid" Association="IPLDbModel.fk_userrolestable_roleid">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRolesTable" EntitySet="UserRolesTables" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userrolestable_userid" Association="IPLDbModel.fk_userrolestable_userid">
+            <End Role="UsersTable" EntitySet="UsersTables" />
+            <End Role="UserRolesTable" EntitySet="UserRolesTables" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="customer_news_view_Result">
           <Property Type="DateTime" Name="Date" Nullable="false" />
@@ -902,6 +977,62 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="40" />
         </ComplexType>
+        <ComplexType Name="usp_newLogin_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Firstname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Lastname" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="usp_newRoleId_Result">
+          <Property Type="Int32" Name="Roleid" Nullable="false" />
+          <Property Type="String" Name="Rolename" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="UserRolesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="IPLDbModel.fk_userrolestable_roleid" FromRole="UserRolesTable" ToRole="Role" />
+          <NavigationProperty Name="UsersTable" Relationship="IPLDbModel.fk_userrolestable_userid" FromRole="UserRolesTable" ToRole="UsersTable" />
+        </EntityType>
+        <EntityType Name="UsersTable">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserRolesTables" Relationship="IPLDbModel.fk_userrolestable_userid" FromRole="UsersTable" ToRole="UserRolesTable" />
+        </EntityType>
+        <Association Name="fk_userrolestable_roleid">
+          <End Type="IPLDbModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="IPLDbModel.UserRolesTable" Role="UserRolesTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRolesTable">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userrolestable_userid">
+          <End Type="IPLDbModel.UsersTable" Role="UsersTable" Multiplicity="0..1" />
+          <End Type="IPLDbModel.UserRolesTable" Role="UserRolesTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRolesTable">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1158,6 +1289,45 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_newLogin" FunctionName="IPLDbModel.Store.usp_newLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_newLogin_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_newRoleId" FunctionName="IPLDbModel.Store.usp_newRoleId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IPLDbModel.usp_newRoleId_Result">
+                <ScalarProperty Name="Roleid" ColumnName="Roleid" />
+                <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="UserRolesTables">
+            <EntityTypeMapping TypeName="IPLDbModel.UserRolesTable">
+              <MappingFragment StoreEntitySet="UserRolesTable">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersTables">
+            <EntityTypeMapping TypeName="IPLDbModel.UsersTable">
+              <MappingFragment StoreEntitySet="UsersTable">
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

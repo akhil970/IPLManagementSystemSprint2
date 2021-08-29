@@ -12,20 +12,20 @@ namespace IPLManagementSystemWEBAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class UsersTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public UsersTable()
         {
-            this.UserRoles = new HashSet<UserRole>();
             this.UserRolesTables = new HashSet<UserRolesTable>();
         }
     
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public int UserID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserRole> UserRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRolesTable> UserRolesTables { get; set; }
     }

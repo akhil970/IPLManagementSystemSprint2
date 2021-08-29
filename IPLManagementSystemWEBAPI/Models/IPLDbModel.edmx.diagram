@@ -33,6 +33,10 @@
         <AssociationConnector Association="IPLDbModel.fk_schedule_venueid" ManuallyRouted="false" />
         <AssociationConnector Association="IPLDbModel.fk_ticket_categoryid" ManuallyRouted="false" />
         <AssociationConnector Association="IPLDbModel.fk_userroles_userid" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IPLDbModel.UserRolesTable" Width="1.5" PointX="8" PointY="13" />
+        <EntityTypeShape EntityType="IPLDbModel.UsersTable" Width="1.5" PointX="5.75" PointY="20.875" />
+        <AssociationConnector Association="IPLDbModel.fk_userrolestable_roleid" />
+        <AssociationConnector Association="IPLDbModel.fk_userrolestable_userid" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
