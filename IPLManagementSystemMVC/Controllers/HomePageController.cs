@@ -24,24 +24,30 @@ namespace IPLManagementSystemMVC.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel login)
         {
+            //Refer LoginController in WebApi Controllers
             using (HttpClient client = new HttpClient())
             {
+                //Select the userdetails and role data as lists to store data
                 List<LoginViewModel> userdetails = new List<LoginViewModel>();
                 List<RoleViewModel> roleData = new List<RoleViewModel>();
+                //Getasync method as it returns the user data which includes password, firstname, lastname, user id
                 var result = client.GetAsync("https://localhost:44307/api/login/UserLogin?username=" + login.Username).Result;
+                
                 if(result.IsSuccessStatusCode)
                 {
+                    //if user exists 
                     userdetails = result.Content.ReadAsAsync<List<LoginViewModel>>().Result;
                     var useridofclient = userdetails.Select(id => id.UserID).FirstOrDefault();
                     var nameOfUser = userdetails.Select(fn => fn.Firstname).FirstOrDefault() +" "+ userdetails.Select(fn => fn.Lastname).FirstOrDefault();
                     var actualPassword = userdetails.Select(e => e.Password).FirstOrDefault();
+                    //verifies password with password present in data base and user entered password
                     if (actualPassword == login.Password)
                     {
+                        //if password matches collect role id based on the user id from user roles table
                         var resultOfRoleId = client.GetAsync("https://localhost:44307/api/roleid/" + useridofclient.ToString()).Result;
                         if(resultOfRoleId.IsSuccessStatusCode)
                         {
-                            
-                            //Session["Username"] = userdetails.Firstname.ToString() + userdetails.Lastname.ToString();
+                            //Refer RoleId Controller in WebApi Controllers                
                             roleData = resultOfRoleId.Content.ReadAsAsync<List<RoleViewModel>>().Result;
                             var roleId = roleData.Select(e => e.Roleid).FirstOrDefault();
                             if(roleId == 0 | roleData is null)
@@ -49,7 +55,7 @@ namespace IPLManagementSystemMVC.Controllers
                                 return RedirectToAction("Customer");
                             }
                             else 
-                            {
+                            {   //based on the role id the specific page/view opens
                                 switch (roleId)
                                 {
                                     case 1:
@@ -83,6 +89,7 @@ namespace IPLManagementSystemMVC.Controllers
         //For Logout
         public ActionResult Logout()
         {
+            //as i have store a session, on clicking logout sessions present get cleared and redirects to home page
             Session.Clear();
             return RedirectToAction("Index", "HomePage");
         }

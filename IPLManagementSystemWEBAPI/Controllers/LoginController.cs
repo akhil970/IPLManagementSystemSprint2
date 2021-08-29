@@ -16,6 +16,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [HttpGet, HttpPost]
         public IHttpActionResult GetUserLogin(string username)
         {
+            //Takes username and returns row data if user exists
             var result = db.usp_newLogin(username); //this returns a row of user information if user exists
             if(result is null)
             {

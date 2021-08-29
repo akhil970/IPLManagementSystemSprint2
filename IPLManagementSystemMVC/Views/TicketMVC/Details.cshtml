@@ -1,0 +1,42 @@
+﻿@model IEnumerable<IPLManagementSystemMVC.Models.TicketDetails>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Match)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Match)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Go Back","Index");
+</div>

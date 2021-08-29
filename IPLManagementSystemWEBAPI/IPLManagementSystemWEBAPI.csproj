@@ -258,6 +258,9 @@
     <Compile Include="Models\UsersTable.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_allstatistics_teamname_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_allStatistics_view_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
@@ -279,10 +282,55 @@
     <Compile Include="Models\usp_login_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_match_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_newLogin_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_newRoleId_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_news_matchphoto_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_News_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_playerphoto_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_player_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_roles_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Schedule_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Speciality_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Team_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_TicketCategory_View_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Ticket_View_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_userrolesnew_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Userroles_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Users_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_Venue_view_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Venue.cs">

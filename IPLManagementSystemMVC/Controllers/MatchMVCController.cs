@@ -23,7 +23,19 @@ namespace IPLManagementSystemMVC.Controllers
             }
             return View(match);
         }
-
+        public ActionResult Details()
+        {
+            List<MatchDetails> matchDetails = new List<MatchDetails>();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/Matches/MatchesDetails").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    matchDetails = result.Content.ReadAsAsync<List<MatchDetails>>().Result;
+                }
+            }
+            return View(matchDetails);
+        }
         // GET: MatchMVC/Create
         public ActionResult InsertMatch()
         {

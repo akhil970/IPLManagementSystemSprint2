@@ -22,6 +22,18 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return db.Tickets;
         }
 
+
+        //Details of all the Tickets
+        [Route("api/Tickets/TicketDetails")]
+        [ResponseType(typeof(usp_Ticket_View_Result))]
+        public IHttpActionResult GetTicketDetails()
+        {
+            var tickets = db.usp_Ticket_View();
+            return Ok(tickets);
+        }
+
+
+
         // GET: api/Tickets/5
         [ResponseType(typeof(Ticket))]
         public IHttpActionResult GetTicket(int id)

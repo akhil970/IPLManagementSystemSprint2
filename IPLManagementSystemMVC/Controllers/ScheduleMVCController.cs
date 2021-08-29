@@ -9,7 +9,6 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class ScheduleMVCController : Controller
     {
-        [OutputCache(Duration = 60, VaryByParam = "none")]
         // GET: ScheduleMVC
         public ActionResult Index()
         {
@@ -24,7 +23,19 @@ namespace IPLManagementSystemMVC.Controllers
             }
             return View(schedule);
         }
-
+        public ActionResult Details()
+        {
+            List<ScheduleDetails> scheduleDetails = new List<ScheduleDetails>();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/Schedules/ScheduleDetails").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    scheduleDetails = result.Content.ReadAsAsync<List<ScheduleDetails>>().Result;
+                }
+            }
+            return View(scheduleDetails);
+        }
 
         // GET: ScheduleMVC/Create
         public ActionResult InsertSchedule()

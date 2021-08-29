@@ -16,16 +16,21 @@ namespace IPLManagementSystemWEBAPI.Controllers
     {
         private IPLDBEntities db = new IPLDBEntities();
 
-        // GET: api/Players
-        //public IQueryable<Player> GetPlayers()
-        //{
-        //    return db.Players;
-        //}
         public IHttpActionResult GetPlayers()
         {
             var player = db.Players.Select(p => new { p.Id, p.Name, p.TeamId, p.Age, p.SpecialityId, p.PhotoId });
             //return db.Players;
             return Ok(player);
+        }
+
+
+        //Details of all the players
+        [Route("api/Players/PlayerDetails")]
+        [ResponseType(typeof(usp_player_view_Result))]
+        public IHttpActionResult GetPlayerDetails()
+        {
+            var players = db.usp_player_view();
+            return Ok(players);
         }
 
 

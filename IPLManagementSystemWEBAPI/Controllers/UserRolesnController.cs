@@ -22,6 +22,18 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return db.UserRolesTables;
         }
 
+
+        //Details of all the UserRolesn
+        [Route("api/UserRolesn/UserRolesDetails")]
+        [ResponseType(typeof(usp_userrolesnew_view_Result))]
+        public IHttpActionResult GetUserRolesDetails()
+        {
+            var userRoles = db.usp_userrolesnew_view();
+            return Ok(userRoles);
+        }
+
+
+
         // GET: api/UserRolesn/5
         [ResponseType(typeof(UserRolesTable))]
         public IHttpActionResult GetUserRolesTable(int id)

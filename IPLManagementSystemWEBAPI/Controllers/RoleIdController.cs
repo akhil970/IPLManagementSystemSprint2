@@ -16,6 +16,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [HttpGet, HttpPost]
         public IHttpActionResult GetUserRoleId(int userid)
         {
+            //gets role id based on the user id
             var result = db.usp_newRoleId(userid); //this returns a row of user information if user exists
             if(result is null)
             {

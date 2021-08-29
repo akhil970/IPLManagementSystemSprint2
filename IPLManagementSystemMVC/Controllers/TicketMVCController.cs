@@ -23,7 +23,19 @@ namespace IPLManagementSystemMVC.Controllers
             }
             return View(ticket);
         }
-
+        public ActionResult Details()
+        {
+            List<TicketDetails> tickets = new List<TicketDetails>();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/Tickets/TicketDetails").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    tickets = result.Content.ReadAsAsync<List<TicketDetails>>().Result;
+                }
+            }
+            return View(tickets);
+        }
         // GET: TicketMVC/Create
         public ActionResult InsertTicket()
         {

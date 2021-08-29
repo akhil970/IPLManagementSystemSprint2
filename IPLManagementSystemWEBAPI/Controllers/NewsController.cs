@@ -22,6 +22,17 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return db.News;
         }
 
+
+        //Details of all the news
+        [Route("api/News/NewsDetails")]
+        [ResponseType(typeof(usp_News_view_Result))]
+        public IHttpActionResult GetNewsDetails()
+        {
+            var news = db.usp_News_view();
+            return Ok(news);
+        }
+
+
         // GET: api/News/5
         [ResponseType(typeof(News))]
         public IHttpActionResult GetNews(int id)

@@ -21,7 +21,14 @@ namespace IPLManagementSystemWEBAPI.Controllers
         {
             return db.Matches;
         }
-
+        //Details of all the matches
+        [Route("api/Matches/MatchesDetails")]
+        [ResponseType(typeof(usp_match_view_Result))]
+        public IHttpActionResult GetMatchesDetails()
+        {
+            var matches = db.usp_match_view();
+            return Ok(matches);
+        }
         // GET: api/Matches/5
         [ResponseType(typeof(Match))]
         public IHttpActionResult GetMatch(int id)

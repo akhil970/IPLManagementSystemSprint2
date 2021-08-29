@@ -23,6 +23,16 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return Ok(scheduleList);
         }
 
+        //Details of all the schedules
+        [Route("api/Schedules/ScheduleDetails")]
+        [ResponseType(typeof(usp_Schedule_view_Result))]
+        public IHttpActionResult GetScheduleDetails()
+        {
+            var schedules = db.usp_Schedule_view();
+            return Ok(schedules);
+        }
+
+
         // GET: api/Schedules/5
         [ResponseType(typeof(Schedule))]
         public IHttpActionResult GetSchedule(int id)

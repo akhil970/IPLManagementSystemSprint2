@@ -146,22 +146,29 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AllStatistic.cs" />
+    <Compile Include="Models\AllStatisticsDetails.cs" />
     <Compile Include="Models\AllTableJoinsMVC.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\MatchDetails.cs" />
     <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewsDetails.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayerDetails.cs" />
     <Compile Include="Models\PlayerPhoto.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\ScheduleDetails.cs" />
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketCategory.cs" />
+    <Compile Include="Models\TicketDetails.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Models\UserRole.cs" />
+    <Compile Include="Models\UserRolesDetails.cs" />
     <Compile Include="Models\UserRolesViewModel.cs" />
     <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Models\Venue.cs" />
@@ -285,6 +292,13 @@
     <Content Include="Views\Userroles\InsertUserRole.cshtml" />
     <Content Include="Views\Userroles\UpdateUserRole.cshtml" />
     <Content Include="Views\HomePage\Register.cshtml" />
+    <Content Include="Views\AllStatisticsMVC\Details.cshtml" />
+    <Content Include="Views\Userroles\Details.cshtml" />
+    <Content Include="Views\TicketMVC\Details.cshtml" />
+    <Content Include="Views\ScheduleMVC\Details.cshtml" />
+    <Content Include="Views\PlayerMVC\Details.cshtml" />
+    <Content Include="Views\MatchMVC\Details.cshtml" />
+    <Content Include="Views\NewsMVC\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

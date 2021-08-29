@@ -239,5 +239,85 @@ namespace IPLManagementSystemWEBAPI.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_newRoleId_Result>("usp_newRoleId", useridParameter);
         }
+    
+        public virtual ObjectResult<usp_allstatistics_teamname_Result> usp_allstatistics_teamname()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_allstatistics_teamname_Result>("usp_allstatistics_teamname");
+        }
+    
+        public virtual ObjectResult<usp_match_view_Result> usp_match_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_match_view_Result>("usp_match_view");
+        }
+    
+        public virtual ObjectResult<usp_news_matchphoto_view_Result> usp_news_matchphoto_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_news_matchphoto_view_Result>("usp_news_matchphoto_view");
+        }
+    
+        public virtual ObjectResult<usp_News_view_Result> usp_News_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_News_view_Result>("usp_News_view");
+        }
+    
+        public virtual ObjectResult<usp_player_view_Result> usp_player_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_player_view_Result>("usp_player_view");
+        }
+    
+        public virtual ObjectResult<usp_playerphoto_view_Result> usp_playerphoto_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_playerphoto_view_Result>("usp_playerphoto_view");
+        }
+    
+        public virtual ObjectResult<usp_roles_view_Result> usp_roles_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_roles_view_Result>("usp_roles_view");
+        }
+    
+        public virtual ObjectResult<usp_Schedule_view_Result> usp_Schedule_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Schedule_view_Result>("usp_Schedule_view");
+        }
+    
+        public virtual ObjectResult<usp_Speciality_view_Result> usp_Speciality_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Speciality_view_Result>("usp_Speciality_view");
+        }
+    
+        public virtual ObjectResult<usp_Team_view_Result> usp_Team_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Team_view_Result>("usp_Team_view");
+        }
+    
+        public virtual ObjectResult<usp_Ticket_View_Result> usp_Ticket_View()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Ticket_View_Result>("usp_Ticket_View");
+        }
+    
+        public virtual ObjectResult<usp_TicketCategory_View_Result> usp_TicketCategory_View()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_TicketCategory_View_Result>("usp_TicketCategory_View");
+        }
+    
+        public virtual ObjectResult<usp_Userroles_view_Result> usp_Userroles_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Userroles_view_Result>("usp_Userroles_view");
+        }
+    
+        public virtual ObjectResult<usp_Users_view_Result> usp_Users_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Users_view_Result>("usp_Users_view");
+        }
+    
+        public virtual ObjectResult<usp_Venue_view_Result> usp_Venue_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_Venue_view_Result>("usp_Venue_view");
+        }
+    
+        public virtual ObjectResult<usp_userrolesnew_view_Result> usp_userrolesnew_view()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_userrolesnew_view_Result>("usp_userrolesnew_view");
+        }
     }
 }

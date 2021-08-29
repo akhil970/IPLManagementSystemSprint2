@@ -1,0 +1,40 @@
+﻿@model IEnumerable<IPLManagementSystemMVC.Models.NewsDetails>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.News_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Match)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.News_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Match)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+    </tr>
+}
+</table>
+<div>
+    @Html.ActionLink("Go Back", "Index")
+</div>

@@ -9,7 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class PlayerMVCController : Controller
     {
-        [OutputCache(Duration = 60, VaryByParam ="none")]
+
         // GET: PlayerMVC
         public ActionResult Index()
         {
@@ -24,7 +24,19 @@ namespace IPLManagementSystemMVC.Controllers
             }
             return View(player);
         }
-
+        public ActionResult Details()
+        {
+            List<PlayerDetails> playerDetails = new List<PlayerDetails>();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/Players/PlayerDetails").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    playerDetails = result.Content.ReadAsAsync<List<PlayerDetails>>().Result;
+                }
+            }
+            return View(playerDetails);
+        }
         // GET: PlayerMVC/Create
         public ActionResult InsertPlayer()
         {

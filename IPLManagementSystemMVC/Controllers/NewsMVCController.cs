@@ -9,7 +9,7 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class NewsMVCController : Controller
     {
-        [OutputCache(Duration = 60, VaryByParam = "none")]
+
         public ActionResult Index()
         {
             List<News> news = new List<News>();
@@ -23,7 +23,19 @@ namespace IPLManagementSystemMVC.Controllers
             }
             return View(news);
         }
-
+        public ActionResult Details()
+        {
+            List<NewsDetails> newsDetails = new List<NewsDetails>();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/News/NewsDetails").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    newsDetails = result.Content.ReadAsAsync<List<NewsDetails>>().Result;
+                }
+            }
+            return View(newsDetails);
+        }
         //To insert data into statistics
         public ActionResult InsertNews()
         {

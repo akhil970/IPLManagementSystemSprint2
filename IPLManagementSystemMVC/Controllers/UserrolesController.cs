@@ -25,6 +25,20 @@ namespace IPLManagementSystemMVC.Controllers
             return View(userRolesList);
         }
 
+        public ActionResult Details()
+        {
+            List<UserRolesDetails> userRoles = new List<UserRolesDetails>();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/userrolesn/UserRolesDetails").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    userRoles = result.Content.ReadAsAsync<List<UserRolesDetails>>().Result;
+                }
+            }
+            return View(userRoles);
+        }
+
         // GET: Userroles/Create
         public ActionResult InsertUserRole()
         {

@@ -9,7 +9,6 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class AllStatisticsMVCController : Controller
     {
-        [OutputCache(Duration = 60, VaryByParam = "none")]
         // GET: AllStatisticsMVC
         public ActionResult Index() 
         {
@@ -24,7 +23,19 @@ namespace IPLManagementSystemMVC.Controllers
             }
             return View(stats);
         }
-
+        public ActionResult Details()
+        {
+            List<AllStatisticsDetails> stats = new List<AllStatisticsDetails>();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/AllStatistics/Statistics").Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    stats = result.Content.ReadAsAsync<List<AllStatisticsDetails>>().Result;
+                }
+            }
+            return View(stats);
+        }
         //To insert data into statistics
         public ActionResult InsertStatistics()
         {
