@@ -1,0 +1,38 @@
+﻿@model IEnumerable<IPLManagementSystemMVC.Models.CustomerMatchResults>
+
+@{
+    ViewBag.Title = "CompletedMatches";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>CompletedMatches</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Match_Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Match_Result)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            <img src="@Html.DisplayFor(modelItem => item.Match_Photo)" height="200" width="200" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Match_Result)
+        </td>
+    </tr>
+}
+
+</table>

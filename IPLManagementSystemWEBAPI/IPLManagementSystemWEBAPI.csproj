@@ -193,6 +193,9 @@
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AllTablesListData.cs" />
+    <Compile Include="Models\CusstomerTicketsMatches.cs" />
+    <Compile Include="Models\CustomerSelectMatches.cs" />
+    <Compile Include="Models\CustomerSelectTickets.cs" />
     <Compile Include="Models\customer_news_view_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
@@ -272,10 +275,19 @@
     <Compile Include="Models\usp_customer_playeridnames_teamid_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_customer_players_view_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_customer_player_selection_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_customer_teamnames_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_cust_match_selection_Result.cs">
+      <DependentUpon>IPLDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_cust_ticket_selection_Result.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_listplayer_onteamid_Result.cs">

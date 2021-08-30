@@ -35,14 +35,20 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <a href="#" class="nav-item nav-link">Home</a>
             <a href="#" class="nav-item nav-link">About Us</a>
-            <a href="@Url.Action("TeamsAndPlayers","CustomerMVC")" class="nav-item nav-link">Teams & Players</a><br />
-            <a href="@Url.Action("Matches","CustomerMVC")" class="nav-item nav-link">Matches</a><br />
+            <a href="@Url.Action("Teams","CustomerMVC")" class="nav-item nav-link">Teams & Players</a><br />
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" style="color:azure" data-toggle="dropdown">Matches</a>
+              <div class="dropdown-menu">
+                  <a href="@Url.Action("CompletedMatches","CustomerMVC")" class="dropdown-item">Match Results</a>
+                  <a href="@Url.Action("UpcomingMatches","CustomerMVC")" class="dropdown-item">Scheduled Matches</a>
+              </div>
+            </div>
             <a href="@Url.Action("Tickets","CustomerMVC")" class="nav-item nav-link">Book Tickets</a><br />
             <a href="@Url.Action("Points_Table","CustomerMVC")" class="nav-item nav-link">Points Tables</a><br />
         </div>
         <div>
         </div>
-        <div class="collapse navbar-collapse" style="float:right !important" id="navbarCollapse">
+        <div class="collapse navbar-collapse" style="float:right " id="navbarCollapse">
             @if (Session["Username"] != null)
             {
                 <h4 style="color:white">Hello @Session["Username"]</h4>

@@ -319,5 +319,24 @@ namespace IPLManagementSystemWEBAPI.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_userrolesnew_view_Result>("usp_userrolesnew_view");
         }
+    
+        public virtual ObjectResult<usp_customer_players_view_Result> usp_customer_players_view(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_customer_players_view_Result>("usp_customer_players_view", idParameter);
+        }
+    
+        public virtual ObjectResult<usp_cust_match_selection_Result> usp_cust_match_selection()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_cust_match_selection_Result>("usp_cust_match_selection");
+        }
+    
+        public virtual ObjectResult<usp_cust_ticket_selection_Result> usp_cust_ticket_selection()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_cust_ticket_selection_Result>("usp_cust_ticket_selection");
+        }
     }
 }

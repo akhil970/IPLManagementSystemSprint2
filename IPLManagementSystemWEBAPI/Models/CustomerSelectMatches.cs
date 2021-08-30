@@ -5,10 +5,9 @@ using System.Web;
 
 namespace IPLManagementSystemWEBAPI.Models
 {
-
-    public class UsersAndRoles
+    public class CustomerSelectMatches
     {
-        public List<UsersTable> Users { get; set; }
-        public List<Role> Roles { get; set; }
+        public int Id { get; set; }
+        public string Match { get; set; }
     }
 }

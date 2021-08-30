@@ -3,6 +3,6 @@
     ViewBag.Title = "Tickets";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
-
-<h2>Tickets</h2>
-
+@Html.Partial("TicketBooking")
+@Html.Partial("TicketCategories")
+@Html.Partial("TicketsAndPrices")

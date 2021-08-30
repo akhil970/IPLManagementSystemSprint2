@@ -1,0 +1,50 @@
+﻿@model IEnumerable<IPLManagementSystemMVC.Models.CustomerPlayers>
+
+@{
+    ViewBag.Title = "Players";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Players</h2>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table col-lg-pull-12">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayerRole)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+             {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                     <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                     </td>
+
+                     <td>
+                        @Html.DisplayFor(modelItem => item.PlayerRole)
+                     </td>
+                     <td>
+                        <img src="@Html.DisplayFor(modelItem => item.Photo)" height="200" width="200"/>
+                     </td>
+                </tr>
+             }
+        </table>
+    </div>
+</div>
+

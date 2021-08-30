@@ -1,0 +1,23 @@
+﻿@model IEnumerable<IPLManagementSystemMVC.Models.CustomerTeamNames>
+
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Teams</h2>
+
+<!--Body Row-->
+<div class="row">
+    <div class="col-md-3">
+        <div style="background-color: lightblue; margin:10px;height: 600px; float: left; font-size: medium">
+            <h3>Select Teams</h3>
+            <div style="padding:5px;font-size:20px">
+                @foreach(var team in Model)
+                 {
+                    <a href="@Url.Action("Players","CustomerMVC", new { id = team.Id })">@team.Name</a><br />
+                 }
+            </div>
+        </div>
+    </div>
+</div>

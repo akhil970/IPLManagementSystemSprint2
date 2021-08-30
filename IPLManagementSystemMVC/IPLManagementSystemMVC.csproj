@@ -148,6 +148,15 @@
     <Compile Include="Models\AllStatistic.cs" />
     <Compile Include="Models\AllStatisticsDetails.cs" />
     <Compile Include="Models\AllTableJoinsMVC.cs" />
+    <Compile Include="Models\CustomerMatchesddl.cs" />
+    <Compile Include="Models\CustomerMatchResults.cs" />
+    <Compile Include="Models\CustomerPlayers.cs" />
+    <Compile Include="Models\CustomerPointsTable.cs" />
+    <Compile Include="Models\CustomerTeamNames.cs" />
+    <Compile Include="Models\CustomerTicketBooking.cs" />
+    <Compile Include="Models\CustomerTicketCategories.cs" />
+    <Compile Include="Models\CustomerTicketsddl.cs" />
+    <Compile Include="Models\CustomerUpcomingMacthes.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\MatchDetails.cs" />
@@ -278,10 +287,8 @@
     <Content Include="Views\UserMVC\Index.cshtml" />
     <Content Include="Views\UserMVC\UpdateUser.cshtml" />
     <Content Include="Views\UserMVC\InsertUser.cshtml" />
-    <Content Include="Views\CustomerMVC\TeamsAndPlayers.cshtml" />
     <Content Include="Views\CustomerMVC\PlayedMatches.cshtml" />
     <Content Include="Views\CustomerMVC\Matches.cshtml" />
-    <Content Include="Views\CustomerMVC\Tickets.cshtml" />
     <Content Include="Views\CustomerMVC\Points_Table.cshtml" />
     <Content Include="Views\CustomerMVC\Index.cshtml" />
     <Content Include="Views\HomePage\Customer.cshtml" />
@@ -300,6 +307,14 @@
     <Content Include="Views\PlayerMVC\Details.cshtml" />
     <Content Include="Views\MatchMVC\Details.cshtml" />
     <Content Include="Views\NewsMVC\Details.cshtml" />
+    <Content Include="Views\CustomerMVC\Teams.cshtml" />
+    <Content Include="Views\CustomerMVC\Players.cshtml" />
+    <Content Include="Views\CustomerMVC\CompletedMatches.cshtml" />
+    <Content Include="Views\CustomerMVC\UpcomingMatches.cshtml" />
+    <Content Include="Views\CustomerMVC\Tickets.cshtml" />
+    <Content Include="Views\CustomerMVC\TicketBooking.cshtml" />
+    <Content Include="Views\CustomerMVC\TicketCategories.cshtml" />
+    <Content Include="Views\CustomerMVC\TicketsAndPrices.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
