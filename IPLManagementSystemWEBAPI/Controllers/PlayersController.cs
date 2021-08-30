@@ -16,13 +16,16 @@ namespace IPLManagementSystemWEBAPI.Controllers
     {
         private IPLDBEntities db = new IPLDBEntities();
 
-        public IHttpActionResult GetPlayers()
+        //public IHttpActionResult GetPlayers()
+        //{
+        //    var player = db.Players.Include("Team").Include("Speciality").Select(p => new { p.Id, p.Name, p.TeamId, p.Age, p.SpecialityId, p.PhotoId });
+        //    //return db.Players;
+        //    return Ok(player);
+        //}
+        public IQueryable<Player> GetPlayers()
         {
-            var player = db.Players.Select(p => new { p.Id, p.Name, p.TeamId, p.Age, p.SpecialityId, p.PhotoId });
-            //return db.Players;
-            return Ok(player);
+            return db.Players;
         }
-
 
         //Details of all the players
         [Route("api/Players/PlayerDetails")]

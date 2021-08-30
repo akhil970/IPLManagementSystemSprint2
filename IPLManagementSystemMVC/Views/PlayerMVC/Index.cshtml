@@ -40,7 +40,7 @@
         @Html.DisplayFor(modelItem => item.Id)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.TeamId)
+        @Html.DisplayFor(modelItem => item.Team)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Name)
@@ -49,10 +49,10 @@
         @Html.DisplayFor(modelItem => item.Age)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.SpecialityId)
+        @Html.DisplayFor(modelItem => item.Speciality)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.PhotoId)
+        @Html.DisplayFor(modelItem => item.PlayerPhoto)
     </td>
     <td>
         @Html.ActionLink("Edit", "UpdatePlayer", new { id = item.Id }) |
