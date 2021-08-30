@@ -16,16 +16,17 @@ namespace IPLManagementSystemWEBAPI.Controllers
     {
         private IPLDBEntities db = new IPLDBEntities();
 
-        //public IHttpActionResult GetPlayers()
-        //{
-        //    var player = db.Players.Include("Team").Include("Speciality").Select(p => new { p.Id, p.Name, p.TeamId, p.Age, p.SpecialityId, p.PhotoId });
-        //    //return db.Players;
-        //    return Ok(player);
-        //}
-        public IQueryable<Player> GetPlayers()
+        public IHttpActionResult GetPlayers()
         {
-            return db.Players;
+            
+            var player = db.Players.Include("Teams").Select(p => new { p.Id, p.Name, p.TeamId, p.Age, p.SpecialityId, p.PhotoId});
+            //return db.Players;
+            return Ok(player);
         }
+        //public IQueryable<Player> GetPlayers()
+        //{
+        //    return db.Players;
+        //}
 
         //Details of all the players
         [Route("api/Players/PlayerDetails")]
@@ -36,6 +37,14 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return Ok(players);
         }
 
+        [Route("api/Players/TeamSpeciality")]
+        public IHttpActionResult GetTeamSpeciality()
+        {
+            AllTablesListData teamsAndSpeciality = new AllTablesListData();
+            teamsAndSpeciality.Team = db.Teams.ToList();
+            teamsAndSpeciality.Speciality = db.Specialities.ToList();
+            return Ok(teamsAndSpeciality);
+        }
 
         // GET: api/Players/5
         [ResponseType(typeof(Player))]
