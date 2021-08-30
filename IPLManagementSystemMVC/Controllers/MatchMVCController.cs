@@ -39,7 +39,12 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: MatchMVC/Create
         public ActionResult InsertMatch()
         {
-            return View();
+            AllTableJoinsMVC teamVenueSchedule = new AllTableJoinsMVC();
+            using (HttpClient client = new HttpClient())
+            {
+
+            }
+                return View();
         }
 
         // POST: MatchMVC/Create

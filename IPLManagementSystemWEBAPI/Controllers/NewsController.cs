@@ -19,9 +19,9 @@ namespace IPLManagementSystemWEBAPI.Controllers
         // GET: api/News
         public IQueryable<News> GetNews()
         {
+            var news = db.News.Select(n => new { n.Id, n.MatchId, n.News_Date, n.Description, n.Match.TeamOneId, n.Match.TeamTwoId });
             return db.News;
         }
-
 
         //Details of all the news
         [Route("api/News/NewsDetails")]

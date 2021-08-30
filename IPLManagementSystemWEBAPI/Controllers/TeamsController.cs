@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using IPLManagementSystemWEBAPI.Models;
@@ -17,9 +18,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/Teams
-        public IQueryable<Team> GetTeams()
+        public IHttpActionResult GetTeams()
         {
-            return db.Teams;
+            var teams = db.Teams.Select(t => new { t.Id, t.Name, t.Logo_Image, t.Home_Ground, t.Franchise_Owners });
+            return Ok(teams);
         }
 
         // GET: api/Teams/5
@@ -72,32 +74,64 @@ namespace IPLManagementSystemWEBAPI.Controllers
 
         // POST: api/Teams
         [ResponseType(typeof(Team))]
-        public IHttpActionResult PostTeam(Team team)
+        public IHttpActionResult PostTeam()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            db.Teams.Add(team);
-
-            try
+            string path = HttpContext.Current.Server.MapPath("~/Images/"); //maps to web api folders
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count == 1)
             {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (TeamExists(team.Id))
+                var Imgfile = httpRequest.Files[0];
+                var LocalImgFilePath = HttpContext.Current.Server.MapPath("~/Images/" + Imgfile.FileName);
+                Imgfile.SaveAs(LocalImgFilePath);
+                var dbImagePath = "https://localhost:44307/Images/" + Imgfile.FileName;
+                Team teamInfo = new Team()
                 {
-                    return Conflict();
-                }
-                else
+                    Id = Convert.ToInt32(httpRequest.Form["Id"]),
+                    Name = httpRequest.Form["Name"],
+                    Home_Ground = httpRequest.Form["Home_Ground"],
+                    Franchise_Owners = httpRequest.Form["Franchise_Owners"],
+                    Logo_Image = dbImagePath
+                };
+                try
                 {
-                    throw;
+                    db.Teams.Add(teamInfo);
+                    db.SaveChanges();
                 }
+                catch (Exception)
+                {
+                    return BadRequest(ModelState);
+                }
+                return Redirect("https://localhost:44349/TeamMVC");
             }
+            return BadRequest(ModelState);
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
-            return CreatedAtRoute("DefaultApi", new { id = team.Id }, team);
+            //db.Teams.Add(team);
+
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (DbUpdateException)
+            //{
+            //    if (TeamExists(team.Id))
+            //    {
+            //        return Conflict();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return CreatedAtRoute("DefaultApi", new { id = team.Id }, team);
         }
 
         // DELETE: api/Teams/5

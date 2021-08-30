@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using IPLManagementSystemWEBAPI.Models;
@@ -17,9 +18,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/Matches
-        public IQueryable<Match> GetMatches()
+        public IHttpActionResult GetMatches()
         {
-            return db.Matches;
+            var match = db.Matches.Select(m => new { m.Id, m.ScheduleId, m.VenueId, m.TeamOneId, m.TeamTwoId, m.MatchPhoto });
+            return Ok(match);
         }
         //Details of all the matches
         [Route("api/Matches/MatchesDetails")]
@@ -29,6 +31,17 @@ namespace IPLManagementSystemWEBAPI.Controllers
             var matches = db.usp_match_view();
             return Ok(matches);
         }
+
+        [Route("api/Matches/TeamVenueSchedule")]
+        public IHttpActionResult GetTeamVenueSchedule()
+        {
+            AllTablesListData teamVenueSchedule = new AllTablesListData();
+            teamVenueSchedule.Schedule = db.Schedules.ToList();
+            teamVenueSchedule.Team = db.Teams.ToList();
+            teamVenueSchedule.Venue = db.Venues.ToList();
+            return Ok(teamVenueSchedule);
+        }
+        
         // GET: api/Matches/5
         [ResponseType(typeof(Match))]
         public IHttpActionResult GetMatch(int id)
@@ -79,32 +92,65 @@ namespace IPLManagementSystemWEBAPI.Controllers
 
         // POST: api/Matches
         [ResponseType(typeof(Match))]
-        public IHttpActionResult PostMatch(Match match)
+        public IHttpActionResult PostMatch()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            db.Matches.Add(match);
-
-            try
+            string path = HttpContext.Current.Server.MapPath("~/Images/"); //maps to web api folders
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count == 1)
             {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (MatchExists(match.Id))
+                var Imgfile = httpRequest.Files[0];
+                var LocalImgFilePath = HttpContext.Current.Server.MapPath("~/Images/" + Imgfile.FileName);
+                Imgfile.SaveAs(LocalImgFilePath);
+                var dbImagePath = "https://localhost:44307/Images/" + Imgfile.FileName;
+                Match matchInfo = new Match()
                 {
-                    return Conflict();
-                }
-                else
+                    Id = Convert.ToInt32(httpRequest.Form["Id"]),
+                    TeamOneId = Convert.ToInt32(httpRequest.Form["TeamOneId"]),
+                    TeamTwoId = Convert.ToInt32(httpRequest.Form["TeamTwoId"]),
+                    VenueId = Convert.ToInt32(httpRequest.Form["VenueId"]),
+                    ScheduleId = Convert.ToInt32(httpRequest.Form["ScheduleId"]),
+                    MatchPhoto = dbImagePath
+                };
+                try
                 {
-                    throw;
+                    db.Matches.Add(matchInfo);
+                    db.SaveChanges();
                 }
+                catch (Exception)
+                {
+                    return BadRequest(ModelState);
+                }
+                return Redirect("https://localhost:44349/MatchMVC");
             }
+            return BadRequest(ModelState);
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
-            return CreatedAtRoute("DefaultApi", new { id = match.Id }, match);
+            //db.Matches.Add(match);
+
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (DbUpdateException)
+            //{
+            //    if (MatchExists(match.Id))
+            //    {
+            //        return Conflict();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return CreatedAtRoute("DefaultApi", new { id = match.Id }, match);
         }
 
         // DELETE: api/Matches/5
