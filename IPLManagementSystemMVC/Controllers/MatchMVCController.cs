@@ -42,7 +42,18 @@ namespace IPLManagementSystemMVC.Controllers
             AllTableJoinsMVC teamVenueSchedule = new AllTableJoinsMVC();
             using (HttpClient client = new HttpClient())
             {
-
+                var result = client.GetAsync("https://localhost:44307/api/Matches/TeamVenueSchedule").Result;
+                if(result.IsSuccessStatusCode)
+                {
+                    teamVenueSchedule = result.Content.ReadAsAsync<AllTableJoinsMVC>().Result;
+                    SelectList MatchTeamSL = new SelectList(teamVenueSchedule.Team, "Id", "Name");
+                    TempData["MatchTeamSL"] = MatchTeamSL;
+                    SelectList MatchVenuSL = new SelectList(teamVenueSchedule.Venue, "Id", "Location");
+                    TempData["MatchVenuSL"] = MatchVenuSL;
+                    SelectList MatchScheduleSL = new SelectList(teamVenueSchedule.Schedule, "Id", "Date");
+                    TempData["MatchScheduleSL"] = MatchScheduleSL;
+                    TempData.Keep();
+                }
             }
                 return View();
         }
@@ -72,6 +83,7 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: MatchMVC/Edit/5
         public ActionResult UpdateMatch(int id)
         {
+            TempData.Keep();
             Match match = new Match();
             using (HttpClient client = new HttpClient())
             {
