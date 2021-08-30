@@ -42,6 +42,20 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: Userroles/Create
         public ActionResult InsertUserRole()
         {
+            UsersAndRolesViewModel usersAndRoles = new UsersAndRolesViewModel();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/UsersAndRoles").Result;
+                if(result.IsSuccessStatusCode)
+                {
+                    usersAndRoles = result.Content.ReadAsAsync<UsersAndRolesViewModel>().Result;
+                    SelectList UsersSL = new SelectList(usersAndRoles.Users, "UserID", "Firstname");
+                    TempData["UsersSL"] = UsersSL;
+                    SelectList RolesSL = new SelectList(usersAndRoles.Roles, "RoleId", "RoleName");
+                    TempData["RolesSL"] = RolesSL;
+                    TempData.Keep();
+                }
+            }
             return View();
         }
 

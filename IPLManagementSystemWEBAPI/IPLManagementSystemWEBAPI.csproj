@@ -181,6 +181,7 @@
     <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Controllers\UserRolesnController.cs" />
     <Compile Include="Controllers\Users1Controller.cs" />
+    <Compile Include="Controllers\UsersAndRolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UsersnController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -255,6 +256,7 @@
     <Compile Include="Models\UserRolesTable.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UsersAndRoles.cs" />
     <Compile Include="Models\UsersTable.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>

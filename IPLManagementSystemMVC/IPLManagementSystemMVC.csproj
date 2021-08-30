@@ -170,6 +170,7 @@
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\UserRolesDetails.cs" />
     <Compile Include="Models\UserRolesViewModel.cs" />
+    <Compile Include="Models\UsersAndRolesViewModel.cs" />
     <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Models\Venue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

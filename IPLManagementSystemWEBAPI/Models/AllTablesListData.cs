@@ -18,5 +18,7 @@ namespace IPLManagementSystemWEBAPI.Models
         public List<Speciality> Speciality {set;get;}
         public List<Ticket> Ticket {set;get;}
         public List<TicketCategory> TicketCategory {set;get;}
+        public List<UsersTable> UsersTable {set;get;}
+        public List<Role> RoleTable {set;get;}
     }
 }

@@ -44,19 +44,6 @@ namespace IPLManagementSystemMVC.Controllers
             }
             return View();
         }
-        //To delete a user
-        public ActionResult DeleteRole(int id)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                var result = client.DeleteAsync("https://localhost:44307/api/userroles/" + id.ToString()).Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("index");
-                }
-            }
-            return View();
-        }
         //To update a user
         public ActionResult UpdateRole(int id)
         {
