@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using IPLManagementSystemWEBAPI.Models;
@@ -73,32 +74,37 @@ namespace IPLManagementSystemWEBAPI.Controllers
 
         // POST: api/PlayerPhotoes
         [ResponseType(typeof(PlayerPhoto))]
-        public IHttpActionResult PostPlayerPhoto(PlayerPhoto playerPhoto)
+        public IHttpActionResult PostPlayerPhoto()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            db.PlayerPhotoes.Add(playerPhoto);
-
-            try
+            string path = HttpContext.Current.Server.MapPath("~/Images/"); //maps to web api folders
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count == 1)
             {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (PlayerPhotoExists(playerPhoto.Id))
+                var Imgfile = httpRequest.Files[0];
+                var LocalImgFilePath = HttpContext.Current.Server.MapPath("~/Images/" + Imgfile.FileName);
+                Imgfile.SaveAs(LocalImgFilePath);
+                var dbImagePath = "https://localhost:44307/Images/" + Imgfile.FileName;
+                PlayerPhoto playerPhoto = new PlayerPhoto()
                 {
-                    return Conflict();
-                }
-                else
+                    Id = Convert.ToInt32(httpRequest.Form["Id"]),
+                    Photo = dbImagePath
+                };
+                try 
                 {
-                    throw;
+                    db.PlayerPhotoes.Add(playerPhoto);
+                    db.SaveChanges();
+                } 
+                catch (Exception) 
+                { 
+                    return BadRequest(ModelState); 
                 }
+                return Redirect("https://localhost:44349/PlayerPhotoMVC");
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = playerPhoto.Id }, playerPhoto);
+            return BadRequest(ModelState);
         }
 
         // DELETE: api/PlayerPhotoes/5
@@ -110,10 +116,15 @@ namespace IPLManagementSystemWEBAPI.Controllers
             {
                 return NotFound();
             }
-
-            db.PlayerPhotoes.Remove(playerPhoto);
-            db.SaveChanges();
-
+            try 
+            {
+                db.PlayerPhotoes.Remove(playerPhoto);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return BadRequest(ModelState);
+            }            
             return Ok(playerPhoto);
         }
 
