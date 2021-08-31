@@ -171,6 +171,7 @@
     <Compile Include="Models\ScheduleDetails.cs" />
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamAndSpeciality.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketCategory.cs" />
     <Compile Include="Models\TicketDetails.cs" />

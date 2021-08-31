@@ -30,11 +30,5 @@ namespace IPLManagementSystemMVC.Models
         [Required(ErrorMessage = "Enter Photo ID")]
         [Display (Name = "Photo ID")]
         public Nullable<int> PhotoId { get; set; }
-
-
-
-        public virtual PlayerPhoto PlayerPhoto { get; set; }
-        public virtual Speciality Speciality { get; set; }
-        public virtual Team Team { get; set; }
     }
 }

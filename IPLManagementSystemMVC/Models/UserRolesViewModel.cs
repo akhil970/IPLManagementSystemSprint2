@@ -19,10 +19,5 @@ namespace IPLManagementSystemMVC.Models
         [Range(1, 3, ErrorMessage = "Enter Proper Role Id")]
         [Display(Name = "Role")]
         public Nullable<int> RoleId { get; set; }
-
-
-        public virtual Role Role { get; set; }
-        public virtual UsersViewModel UsersTable { get; set; }
-
     }
 }

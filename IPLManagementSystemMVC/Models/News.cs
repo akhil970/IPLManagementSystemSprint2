@@ -24,6 +24,5 @@ namespace IPLManagementSystemMVC.Models
         [Display(Name = "Match Status")]
         public string Description { get; set; }
 
-        public virtual Match Match { get; set; }
     }
 }

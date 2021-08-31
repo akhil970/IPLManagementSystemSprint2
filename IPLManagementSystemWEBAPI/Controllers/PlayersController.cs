@@ -19,14 +19,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         public IHttpActionResult GetPlayers()
         {
             
-            var player = db.Players.Include("Teams").Select(p => new { p.Id, p.Name, p.TeamId, p.Age, p.SpecialityId, p.PhotoId});
-            //return db.Players;
+            var player = db.Players.Select(p => new { p.Id, p.Name, p.TeamId, p.Age, p.SpecialityId, p.PhotoId});
             return Ok(player);
         }
-        //public IQueryable<Player> GetPlayers()
-        //{
-        //    return db.Players;
-        //}
+
 
         //Details of all the players
         [Route("api/Players/PlayerDetails")]
@@ -87,7 +83,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ModelState);
                 }
             }
 

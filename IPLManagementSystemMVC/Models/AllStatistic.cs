@@ -50,7 +50,5 @@ namespace IPLManagementSystemMVC.Models
         [Required(ErrorMessage = "Enter Total Points")]
         [Display(Name = "Points")]
         public Nullable<int> Points { get; set; }
-
-        public virtual Team Team { get; set; }
     }
 }

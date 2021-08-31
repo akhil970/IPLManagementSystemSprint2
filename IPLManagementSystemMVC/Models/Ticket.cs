@@ -25,8 +25,5 @@ namespace IPLManagementSystemMVC.Models
         [Required(ErrorMessage = "Enter Ticket Price")]
         [DataType(DataType.Currency)]
         public Nullable<decimal> Price { get; set; }
-
-        public virtual Match Match { get; set; }
-        public virtual TicketCategory TicketCategory { get; set; }
     }
 }

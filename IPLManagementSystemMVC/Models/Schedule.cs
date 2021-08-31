@@ -29,7 +29,5 @@ namespace IPLManagementSystemMVC.Models
         [Required(ErrorMessage = "Enter End Time")]
         [DataType(DataType.Time, ErrorMessage = "Enter Proper Time")]
         public Nullable<System.TimeSpan> End_Time { get; set; }
-
-        public virtual Venue Venue { get; set; }
     }
 }

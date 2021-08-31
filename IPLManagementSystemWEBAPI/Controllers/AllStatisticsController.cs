@@ -17,10 +17,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/AllStatistics
-        public IQueryable<AllStatistic> GetAllStatistics()
+        public IHttpActionResult GetAllStatistics()
         {
-            //var stats = db.AllStatistics.Select(sta => new { sta.Id,sta.TeamId, sta.Played, sta.Won, sta.Lost, sta.Tied, sta.NRR, sta.NoResult, sta.Points });
-            return db.AllStatistics;
+            var stats = db.AllStatistics.Select(sta => new { sta.Id,sta.TeamId, sta.Played, sta.Won, sta.Lost, sta.Tied, sta.NRR, sta.NoResult, sta.Points });
+            return Ok(stats);
         }
 
         [Route("api/AllStatistics/Statistics")]
