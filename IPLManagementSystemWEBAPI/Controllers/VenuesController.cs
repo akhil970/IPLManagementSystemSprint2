@@ -17,9 +17,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/Venues
-        public IQueryable<Venue> GetVenues()
+        public IHttpActionResult GetVenues()
         {
-            return db.Venues;
+            var venues = db.Venues.Select(v => new { v.Id,v.Location,v.Description });
+            return Ok(venues);
         }
 
         // GET: api/Venues/5

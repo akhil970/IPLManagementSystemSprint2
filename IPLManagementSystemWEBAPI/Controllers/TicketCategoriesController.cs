@@ -17,10 +17,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/TicketCategories
-        public IQueryable<TicketCategory> GetTicketCategories()
+        public IHttpActionResult GetTicketCategories()
         {
             var ticketCategories = db.TicketCategories.Select(tc => new { tc.Id, tc.Name });
-            return db.TicketCategories;
+            return Ok(ticketCategories);
         }
 
         // GET: api/TicketCategories/5

@@ -1,8 +1,33 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Welcome To Indian Premiere League Web Site";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 
-
+<body>
+    <h2 style="font-weight:bold;color:darkslategrey">Welcome To Indian Premiere League</h2>
+    <!--Carousels-->
+    <div class="carousel slide" id="maindiv" data-ride="carousel" data-interval="3000">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#maindiv" data-slide-to="0" class="active"></li>
+            <li data-target="#maindiv" data-slide-to="1"></li>
+            <li data-target="#maindiv" data-slide-to="2"></li>
+            <li data-target="#maindiv" data-slide-to="3"></li>
+        </ul>
+        <!-- Slide Show -->
+        <div class="carousel-inner" style="padding-left:400px;background-color:Highlight">
+            <div class="carousel-item active"><img src="~/Images/CSK.png" height="400"></div>
+            <div class="carousel-item"><img src="~/Images/MI.png" height="400"></div>
+            <div class="carousel-item" style="padding-left:100px"><img src="~/Images/RCB.png" height="400"></div>
+            <div class="carousel-item"><img src="~/Images/SRH.png" height="400"></div>
+        </div>
+        <!-- left and right arrows-->
+        <a class="carousel-control-prev" href="#maindiv" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#maindiv" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</body>
 

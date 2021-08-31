@@ -18,24 +18,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         .nav-item {
-            color: azure;
+            color: azure;        
         }
+        #navbar {
+            padding-left:25px;
+            font-size:20px;
+        }
+        
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md fixed-top" style="padding:0px; background-color:darkblue;">
+    <nav class="navbar navbar-expand-md fixed-top" style="padding-left:20px; font-weight:bold; background-color:darkblue;">
         <a href="#" style="background-color:darkblue"><img style="height:50px; width:60px" src="~/Images/Logos/ipl logo 2.jpeg" /></a>
-        <!--For menu items -->
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <a href="#" class="nav-item nav-link">Home</a>
-            <a href="#" class="nav-item nav-link">About Us</a>
-        </div>
-        <!--For Login and Register links -->
-        <div class="navbar-nav">
+    @*For menu items*@ 
+    <div class="collapse navbar-collapse" id="navbar">
+        <a href="#" class="nav-item nav-link">Home</a>
+        <a href="#" class="nav-item nav-link">About Us</a>
+    </div>
+    @*For Login and Register links*@ 
+    <div class="navbar-nav" id="navbar">
             <a href="@Url.Action("Login","HomePage")" class="nav-item nav-link">Login</a>
             <a href="@Url.Action("Register","HomePage")" class="nav-item nav-link">Register</a>
         </div>
     </nav>
+
     @RenderBody()
 </body>
 </html>

@@ -40,14 +40,14 @@ namespace IPLManagementSystemMVC.Controllers
 
         public ActionResult InsertTicket()
         {
-            List<TicketCategory> tcandMatches = new List<TicketCategory>();
+            AllTableJoinsMVC tcs = new AllTableJoinsMVC();
             using (HttpClient client = new HttpClient())
             {
                 var result = client.GetAsync("https://localhost:44307/api/Tickets/TCandMatches").Result;
                 if(result.IsSuccessStatusCode)
                 {
-                    tcandMatches = result.Content.ReadAsAsync<List<TicketCategory>>().Result;
-                    SelectList TCSL = new SelectList(tcandMatches, "Id", "Name");
+                    tcs = result.Content.ReadAsAsync<AllTableJoinsMVC>().Result;
+                    SelectList TCSL = new SelectList(tcs.TicketCategory, "Id", "Name");
                     TempData["TCSL"] = TCSL;
                     TempData.Keep();
                 }

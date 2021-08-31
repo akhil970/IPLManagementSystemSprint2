@@ -195,6 +195,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\CSK.png" />
     <Content Include="Images\Logos\ipl logo 2.jpeg" />
     <Content Include="Images\Logos\pic1.jpg" />
     <Content Include="Images\Logos\pic2.jpg" />
@@ -202,6 +203,9 @@
     <Content Include="Images\Logos\pic4.jpg" />
     <Content Include="Images\Logos\pic5.jpg" />
     <Content Include="Images\Logos\pic6.jpg" />
+    <Content Include="Images\MI.png" />
+    <Content Include="Images\RCB.png" />
+    <Content Include="Images\SRH.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

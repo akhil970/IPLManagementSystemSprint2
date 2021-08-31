@@ -34,13 +34,13 @@ namespace IPLManagementSystemWEBAPI.Controllers
         }
 
         [Route("api/Tickets/TCandMatches")]
+        [ResponseType(typeof(List<TicketCategory>))]
         public IHttpActionResult GetTCandMatches()
         {
-            List<TicketCategory> tcandMatches = new List<TicketCategory>();
-            tcandMatches = db.TicketCategories.ToList();
-            return Ok(tcandMatches);
+            AllTablesListData tc = new AllTablesListData();
+            tc.TicketCategory = db.TicketCategories.ToList();
+            return Ok(tc);
         }
-
 
         // GET: api/Tickets/5
         [ResponseType(typeof(Ticket))]
