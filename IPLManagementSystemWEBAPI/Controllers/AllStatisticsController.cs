@@ -64,7 +64,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
 
             if (id != allStatistic.Id)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             db.Entry(allStatistic).State = EntityState.Modified;
@@ -81,10 +81,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ModelState);
                 }
             }
-
+            //200 operation susccesfull, 204 operation sucessfull and it return no data
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -97,7 +97,6 @@ namespace IPLManagementSystemWEBAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            
             db.AllStatistics.Add(allStatistic);
 
             try

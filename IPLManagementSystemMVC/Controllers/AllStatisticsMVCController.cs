@@ -51,7 +51,8 @@ namespace IPLManagementSystemMVC.Controllers
                     TempData.Keep();
                 }
             }
-                return View();
+            TempData.Keep();
+            return View();
         }
         [HttpPost] //works when submit button is clicked
         public ActionResult InsertStatistics(AllStatistic stats)
@@ -85,6 +86,7 @@ namespace IPLManagementSystemMVC.Controllers
         [HttpPost]
         public ActionResult UpdateStatistics(AllStatistic stats)
         {
+            //TempData.Keep();
             using (HttpClient client = new HttpClient())
             {
                 var result = client.PutAsJsonAsync("https://localhost:44307/api/allstatistics/" + stats.Id.ToString(), stats).Result;
