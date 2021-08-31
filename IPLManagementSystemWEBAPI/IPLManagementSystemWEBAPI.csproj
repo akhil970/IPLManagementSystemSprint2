@@ -253,6 +253,7 @@
     <Compile Include="Models\TicketCategory.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TicketsAndMatches.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>

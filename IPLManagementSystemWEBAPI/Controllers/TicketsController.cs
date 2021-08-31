@@ -17,9 +17,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/Tickets
-        public IQueryable<Ticket> GetTickets()
+        public IHttpActionResult GetTickets()
         {
-            return db.Tickets;
+            var tickes = db.Tickets.Select(t => new { t.Id, t.CategoryId, t.MatchId, t.Price });
+            return Ok(tickes);
         }
 
 
@@ -32,6 +33,13 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return Ok(tickets);
         }
 
+        [Route("api/Tickets/TCandMatches")]
+        public IHttpActionResult GetTCandMatches()
+        {
+            List<TicketCategory> tcandMatches = new List<TicketCategory>();
+            tcandMatches = db.TicketCategories.ToList();
+            return Ok(tcandMatches);
+        }
 
 
         // GET: api/Tickets/5

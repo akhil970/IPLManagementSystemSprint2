@@ -32,6 +32,14 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return Ok(schedules);
         }
 
+        [Route("api/Schedules/Venuename")]
+        [ResponseType(typeof(Venue))]
+        public IHttpActionResult GetVenuename()
+        {
+            List<Venue> venueforschedule = new List<Venue>();
+            venueforschedule = db.Venues.ToList();
+            return Ok(venueforschedule);
+        }
 
         // GET: api/Schedules/5
         [ResponseType(typeof(Schedule))]

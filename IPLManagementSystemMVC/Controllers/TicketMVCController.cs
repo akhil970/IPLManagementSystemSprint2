@@ -37,8 +37,21 @@ namespace IPLManagementSystemMVC.Controllers
             return View(tickets);
         }
         // GET: TicketMVC/Create
+
         public ActionResult InsertTicket()
         {
+            List<TicketCategory> tcandMatches = new List<TicketCategory>();
+            using (HttpClient client = new HttpClient())
+            {
+                var result = client.GetAsync("https://localhost:44307/api/Tickets/TCandMatches").Result;
+                if(result.IsSuccessStatusCode)
+                {
+                    tcandMatches = result.Content.ReadAsAsync<List<TicketCategory>>().Result;
+                    SelectList TCSL = new SelectList(tcandMatches, "Id", "Name");
+                    TempData["TCSL"] = TCSL;
+                    TempData.Keep();
+                }
+            }
             return View();
         }
 
@@ -67,6 +80,7 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: TicketMVC/Edit/5
         public ActionResult UpdateTicket(int id)
         {
+            TempData.Keep();
             Ticket ticket = new Ticket();
             using (HttpClient client = new HttpClient())
             {

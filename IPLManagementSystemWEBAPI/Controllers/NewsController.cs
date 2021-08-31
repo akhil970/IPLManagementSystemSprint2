@@ -32,6 +32,14 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return Ok(news);
         }
 
+        [Route("api/News/MatchIdfornews")]
+        public IHttpActionResult GetMatchIdfornews()
+        {
+            AllTablesListData matchfnews = new AllTablesListData();
+            matchfnews.Match = db.Matches.ToList();
+            return Ok(matchfnews);
+        }
+
 
         // GET: api/News/5
         [ResponseType(typeof(News))]
