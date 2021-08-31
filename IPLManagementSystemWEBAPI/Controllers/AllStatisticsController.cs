@@ -31,6 +31,15 @@ namespace IPLManagementSystemWEBAPI.Controllers
             return Ok(stats);
         }
 
+        [Route("api/AllStatistics/Teamname")]
+        [ResponseType(typeof(Team))]
+        public IHttpActionResult GetTeamname()
+        {
+            List<Team> teamName = new List<Team>();
+            teamName = db.Teams.ToList();
+            return Ok(teamName);
+        }
+
         // GET: api/AllStatistics/5
         [ResponseType(typeof(AllStatistic))]
         public IHttpActionResult GetAllStatistic(int id)
@@ -88,6 +97,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            
             db.AllStatistics.Add(allStatistic);
 
             try
@@ -98,11 +108,11 @@ namespace IPLManagementSystemWEBAPI.Controllers
             {
                 if (AllStatisticExists(allStatistic.Id))
                 {
-                    return Conflict();
+                    return BadRequest(ModelState);
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ModelState);
                 }
             }
 
