@@ -17,10 +17,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/News
-        public IQueryable<News> GetNews()
+        public IHttpActionResult GetNews()
         {
-            var news = db.News.Select(n => new { n.Id, n.MatchId, n.News_Date, n.Description, n.Match.TeamOneId, n.Match.TeamTwoId });
-            return db.News;
+            var news = db.News.Select(n => new { n.Id, n.MatchId, n.News_Date, n.Description });
+            return Ok(news);
         }
 
         //Details of all the news

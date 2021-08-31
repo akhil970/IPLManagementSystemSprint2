@@ -9,7 +9,6 @@ namespace IPLManagementSystemMVC.Controllers
 {
     public class SpecialityMVCController : Controller
     {
-        //[OutputCache (Duration = 60, VaryByParam = "none")]
         // GET: SpecialityMVC
         public ActionResult Index()
         {
@@ -77,7 +76,7 @@ namespace IPLManagementSystemMVC.Controllers
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/players/" + speciality.Id.ToString(), speciality).Result;
+                    var result = client.PutAsJsonAsync("https://localhost:44307/api/speciality/" + speciality.Id.ToString(), speciality).Result;
                     if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("index");

@@ -10,6 +10,7 @@ namespace IPLManagementSystemMVC.Models
         [Range(1,int.MaxValue, ErrorMessage = "Enter Proper Speciality ID")]
         [Required(ErrorMessage = "Enter Speciality ID")]
         public int Id { get; set; }
+
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Enter Speciality Description")]
         public string Description { get; set; }

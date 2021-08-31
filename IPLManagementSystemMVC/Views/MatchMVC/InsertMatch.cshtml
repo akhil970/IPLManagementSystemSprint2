@@ -32,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TeamOneId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.TeamOneId, TempData["MatchTeamSL"] as SelectList,"----Select----", new { @class = "form-control" })
+                @Html.EditorFor(model => model.TeamOneId, new { htmlAttribute = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TeamOneId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TeamTwoId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.TeamTwoId, TempData["MatchTeamSL"] as SelectList, "----Select----", new { @class = "form-control" } )
+                @Html.EditorFor(model => model.TeamTwoId, new { htmlAttribute = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TeamTwoId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.VenueId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.VenueId, TempData["MatchVenuSL"] as SelectList,"----Select----",new { @class = "form-control" })
+                @Html.EditorFor(model => model.VenueId, new { htmlAttribute = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.VenueId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ScheduleId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ScheduleId, TempData["MatchScheduleSL"] as SelectList, "----Select----" , new { @class = "form-control" })
+                @Html.EditorFor(model => model.ScheduleId, new { htmlAttribute = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ScheduleId, "", new { @class = "text-danger" })
             </div>
         </div>

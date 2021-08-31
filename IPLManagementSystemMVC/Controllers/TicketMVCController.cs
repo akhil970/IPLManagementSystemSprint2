@@ -52,6 +52,7 @@ namespace IPLManagementSystemMVC.Controllers
                     TempData.Keep();
                 }
             }
+            TempData.Keep();
             return View();
         }
 
@@ -59,6 +60,7 @@ namespace IPLManagementSystemMVC.Controllers
         [HttpPost]
         public ActionResult InsertTicket(Ticket ticket)
         {
+            TempData.Keep();
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -100,6 +102,7 @@ namespace IPLManagementSystemMVC.Controllers
         {
             try
             {
+                TempData.Keep();
                 using (HttpClient client = new HttpClient())
                 {
                     var result = client.PutAsJsonAsync("https://localhost:44307/api/tickets/" + ticket.Id.ToString(), ticket).Result;

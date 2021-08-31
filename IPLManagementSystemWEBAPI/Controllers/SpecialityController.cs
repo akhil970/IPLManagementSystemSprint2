@@ -17,9 +17,10 @@ namespace IPLManagementSystemWEBAPI.Controllers
         private IPLDBEntities db = new IPLDBEntities();
 
         // GET: api/Speciality
-        public IQueryable<Speciality> GetSpecialities()
+        public IHttpActionResult GetSpecialities()
         {
-            return db.Specialities;
+            var speciality = db.Specialities.Select(s => new { s.Id, s.Description });
+            return Ok(speciality);
         }
 
         // GET: api/Speciality/5
@@ -63,7 +64,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ModelState);
                 }
             }
 
@@ -89,11 +90,11 @@ namespace IPLManagementSystemWEBAPI.Controllers
             {
                 if (SpecialityExists(speciality.Id))
                 {
-                    return Conflict();
+                    return BadRequest();
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ModelState);
                 }
             }
 

@@ -19,6 +19,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         // GET: api/TicketCategories
         public IQueryable<TicketCategory> GetTicketCategories()
         {
+            var ticketCategories = db.TicketCategories.Select(tc => new { tc.Id, tc.Name });
             return db.TicketCategories;
         }
 
