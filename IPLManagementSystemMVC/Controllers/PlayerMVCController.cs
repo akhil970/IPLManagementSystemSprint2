@@ -38,6 +38,7 @@ namespace IPLManagementSystemMVC.Controllers
             return View(playerDetails);
         }
         // GET: PlayerMVC/Create
+        [OutputCache(Duration = 60, VaryByParam = "None")]
         public ActionResult InsertPlayer()
         {
             AllTableJoinsMVC teamsAndSpeciality = new AllTableJoinsMVC();

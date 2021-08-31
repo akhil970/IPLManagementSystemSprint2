@@ -37,6 +37,7 @@ namespace IPLManagementSystemMVC.Controllers
             return View(matchDetails);
         }
         // GET: MatchMVC/Create
+        [OutputCache(Duration = 120, VaryByParam = "None")]
         public ActionResult InsertMatch()
         {
             AllTableJoinsMVC teamVenueSchedule = new AllTableJoinsMVC();

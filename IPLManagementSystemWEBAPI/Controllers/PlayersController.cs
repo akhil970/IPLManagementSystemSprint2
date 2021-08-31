@@ -36,7 +36,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
             var players = db.usp_player_view();
             return Ok(players);
         }
-
+         
         [Route("api/Players/TeamSpeciality")]
         public IHttpActionResult GetTeamSpeciality()
         {

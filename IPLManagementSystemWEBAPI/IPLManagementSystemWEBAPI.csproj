@@ -235,6 +235,7 @@
     <Compile Include="Models\Schedule.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Scheduleddl.cs" />
     <Compile Include="Models\Speciality.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
@@ -244,6 +245,8 @@
     <Compile Include="Models\Team.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Teamddl.cs" />
+    <Compile Include="Models\TeamVenueScheduleddl.cs" />
     <Compile Include="Models\Ticket.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
@@ -350,6 +353,7 @@
     <Compile Include="Models\Venue.cs">
       <DependentUpon>IPLDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Venueddl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -102,21 +102,21 @@ namespace IPLManagementSystemWEBAPI.Controllers
             var httpRequest = HttpContext.Current.Request;
             if (httpRequest.Files.Count == 1)
             {
-                var Imgfile = httpRequest.Files[0];
-                var LocalImgFilePath = HttpContext.Current.Server.MapPath("~/Images/" + Imgfile.FileName);
-                Imgfile.SaveAs(LocalImgFilePath);
-                var dbImagePath = "https://localhost:44307/Images/" + Imgfile.FileName;
-                Match matchInfo = new Match()
-                {
-                    Id = Convert.ToInt32(httpRequest.Form["Id"]),
-                    TeamOneId = Convert.ToInt32(httpRequest.Form["TeamOneId"]),
-                    TeamTwoId = Convert.ToInt32(httpRequest.Form["TeamTwoId"]),
-                    VenueId = Convert.ToInt32(httpRequest.Form["VenueId"]),
-                    ScheduleId = Convert.ToInt32(httpRequest.Form["ScheduleId"]),
-                    MatchPhoto = dbImagePath
-                };
                 try
                 {
+                    var Imgfile = httpRequest.Files[0];
+                    var LocalImgFilePath = HttpContext.Current.Server.MapPath("~/Images/" + Imgfile.FileName);
+                    Imgfile.SaveAs(LocalImgFilePath);
+                    var dbImagePath = "https://localhost:44307/Images/" + Imgfile.FileName;
+                    Match matchInfo = new Match()
+                    {
+                        Id = Convert.ToInt32(httpRequest.Form["Id"]),
+                        TeamOneId = Convert.ToInt32(httpRequest.Form["TeamOneId"]),
+                        TeamTwoId = Convert.ToInt32(httpRequest.Form["TeamTwoId"]),
+                        VenueId = Convert.ToInt32(httpRequest.Form["VenueId"]),
+                        ScheduleId = Convert.ToInt32(httpRequest.Form["ScheduleId"]),
+                        MatchPhoto = dbImagePath
+                    };
                     db.Matches.Add(matchInfo);
                     db.SaveChanges();
                 }

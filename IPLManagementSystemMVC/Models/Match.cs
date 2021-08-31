@@ -13,29 +13,29 @@ namespace IPLManagementSystemMVC.Models
             this.News = new HashSet<News>();
             this.Tickets = new HashSet<Ticket>();
         }
-        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match ID")]
+        
         [Required(ErrorMessage = "Enter Match ID")]
         public int Id { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Team ID")]
+     
         [Required(ErrorMessage = "Enter Match ID")]
         public int TeamOneId { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Team ID")]
+    
         [Required(ErrorMessage = "Enter Team ID")]
         public int TeamTwoId { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Venue ID")]
+     
         [Required(ErrorMessage = "Enter Venue ID")]
         public int VenueId { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Schedule ID")]
+        
         [Required(ErrorMessage = "Enter Schedule ID")]
         public Nullable<int> ScheduleId { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Enter Proper Match Photo")]
+      
         [Required(ErrorMessage = "Upload Match Photo")]
-        [DataType(DataType.ImageUrl, ErrorMessage = "Enter Proper Image URL")]
+        
         public string MatchPhoto { get; set; }
 
         public virtual Team Team { get; set; }
