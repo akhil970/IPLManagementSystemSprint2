@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "ErrorView";
+    Layout = "~/Views/Shared/Error.cshtml";
+}
+<body>
+    <div>
+        <h1>You Are Unaouthorized To View This Page</h1>
+        <p class="lead">Please Login Agin</p>
+        <p><a href="@Url.Action("Index","HomePage")" class="btn btn-danger" style="font-size:20px" >Click Here to Login</a></p>
+    </div>
+</body>
+

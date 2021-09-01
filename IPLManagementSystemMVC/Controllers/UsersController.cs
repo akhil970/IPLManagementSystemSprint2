@@ -12,16 +12,24 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            List<UsersViewModel> usersview = new List<UsersViewModel>();
-            using (HttpClient client = new HttpClient())
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                var result = client.GetAsync("https://localhost:44307/api/usersn").Result;
-                if (result.IsSuccessStatusCode)
+                List<UsersViewModel> usersview = new List<UsersViewModel>();
+                using (HttpClient client = new HttpClient())
                 {
-                    usersview = result.Content.ReadAsAsync<List<UsersViewModel>>().Result;
+                    var result = client.GetAsync("https://localhost:44307/api/usersn").Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        usersview = result.Content.ReadAsAsync<List<UsersViewModel>>().Result;
+                    }
                 }
+                return View(usersview);
             }
-            return View(usersview);
+            else
+            {
+                return RedirectToAction("ErrorView", "HomePage");
+            }
         }
 
         // GET: Users/Create

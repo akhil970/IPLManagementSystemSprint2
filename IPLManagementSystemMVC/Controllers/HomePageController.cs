@@ -45,27 +45,30 @@ namespace IPLManagementSystemMVC.Controllers
                     {
                         //if password matches collect role id based on the user id from user roles table
                         var resultOfRoleId = client.GetAsync("https://localhost:44307/api/roleid/" + useridofclient.ToString()).Result;
-                        if(resultOfRoleId.IsSuccessStatusCode)
+                        if (resultOfRoleId.IsSuccessStatusCode)
                         {
                             //Refer RoleId Controller in WebApi Controllers                
                             roleData = resultOfRoleId.Content.ReadAsAsync<List<RoleViewModel>>().Result;
                             var roleId = roleData.Select(e => e.Roleid).FirstOrDefault();
-                            if(roleId == 0 | roleData is null)
+                            if (roleId == 0 | roleData is null)
                             {
-                                Session["Username"] = nameOfUser;
                                 return RedirectToAction("Customer");
                             }
                             else 
-                            {   //based on the role id the specific page/view opens
+                            {
+                                //based on the role id the specific page/view opens
                                 switch (roleId)
                                 {
                                     case 1:
+                                        Session["RoleId"] = roleId;
                                         Session["Username"] = nameOfUser;
                                         return RedirectToAction("Admin");
                                     case 2:
+                                        Session["RoleId"] = roleId;
                                         Session["Username"] = nameOfUser;
                                         return RedirectToAction("Employee");
                                     case 3:
+                                        Session["RoleId"] = roleId;
                                         Session["Username"] = nameOfUser;
                                         return RedirectToAction("Customer");
                                 }
@@ -74,13 +77,13 @@ namespace IPLManagementSystemMVC.Controllers
                     }
                     else
                     {
-                        //ViewBag.Notification("Invalid Password");
+                        //ViewBag.Message("Invalid Password");
                         return View();
                     }
                 }
                 else
                 {
-                    //ViewBag.Notification("Invalid Username");
+                    //ViewBag.Message("Invalid Username");
                     return View();
                 }
                 
@@ -110,13 +113,16 @@ namespace IPLManagementSystemMVC.Controllers
                 };
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/usersn", userreg).Result;
+
+                        var result = client.PostAsJsonAsync("https://localhost:44307/api/usersn", userreg).Result;
+
+                        if (result.IsSuccessStatusCode)
+                        {
+                            Session["Username"] = userRegister.Firstname + userRegister.Lastname;
+                            return RedirectToAction("Customer");
+                        }
+
                     
-                    if (result.IsSuccessStatusCode)
-                    {
-                        Session["Username"] = userRegister.Firstname + userRegister.Lastname;
-                        return RedirectToAction("Customer");
-                    }
                 }
                 return View();
             }
@@ -135,6 +141,11 @@ namespace IPLManagementSystemMVC.Controllers
         }
         public ActionResult Customer()
         {
+            return View();
+        }
+        public ActionResult ErrorView()
+        {
+            Session.Clear();
             return View();
         }
     }
