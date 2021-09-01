@@ -44,8 +44,8 @@
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" style="color:azure" data-toggle="dropdown">Matches</a>
               <div class="dropdown-menu">
-                  <a href="@Url.Action("CompletedMatches","CustomerMVC")" class="dropdown-item">Match Results</a>
-                  <a href="@Url.Action("UpcomingMatches","CustomerMVC")" class="dropdown-item">Scheduled Matches</a>
+                  <a href="@Url.Action("CompletedMatches","CustomerMVC")" class="dropdown-item" style="font-size:15px;color:black;">Match Results</a>
+                  <a href="@Url.Action("UpcomingMatches","CustomerMVC")" class="dropdown-item"style="font-size:15px;color:black;">Scheduled Matches</a>
               </div>
             </div>
             <a href="@Url.Action("Tickets","CustomerMVC")" class="nav-item nav-link">Book Tickets</a><br />
@@ -64,8 +64,8 @@
         </div>
     </nav>
     <!--Body Row-->
-        <div class="col-md-12" style="margin-top: 0; margin-bottom: 0; margin-right: auto; margin-left: auto; ">
-            <div style="font-size:medium; height: 400px;">
+        <div class="col-md-12">
+            <div style="font-size:medium; height: 400px;margin-top:50px;">
                 @RenderBody()
             </div>
         </div>
