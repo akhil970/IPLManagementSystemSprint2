@@ -148,5 +148,9 @@ namespace IPLManagementSystemMVC.Controllers
             Session.Clear();
             return View();
         }
+        public ActionResult AboutsUS()
+        {
+            return View();
+        }
     }
 }

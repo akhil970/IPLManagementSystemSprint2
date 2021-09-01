@@ -12,111 +12,165 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: Userroles
         public ActionResult Index()
         {
-            List<UserRolesViewModel> userRolesList = new List<UserRolesViewModel>();
-            using (HttpClient client = new HttpClient())
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                //To get the response code from the url specified if ok we will read the data
-                var result = client.GetAsync("https://localhost:44307/api/userrolesn").Result;
-                if (result.IsSuccessStatusCode)
+                List<UserRolesViewModel> userRolesList = new List<UserRolesViewModel>();
+                using (HttpClient client = new HttpClient())
                 {
-                    userRolesList = result.Content.ReadAsAsync<List<UserRolesViewModel>>().Result;
+                    //To get the response code from the url specified if ok we will read the data
+                    var result = client.GetAsync("https://localhost:44307/api/userrolesn").Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        userRolesList = result.Content.ReadAsAsync<List<UserRolesViewModel>>().Result;
+                    }
                 }
+                return View(userRolesList);
             }
-            return View(userRolesList);
+            else
+            {
+                return RedirectToAction("ErrorView", "HomePage");
+            }
+            
         }
 
         public ActionResult Details()
         {
-            List<UserRolesDetails> userRoles = new List<UserRolesDetails>();
-            using (HttpClient client = new HttpClient())
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                var result = client.GetAsync("https://localhost:44307/api/userrolesn/UserRolesDetails").Result;
-                if (result.IsSuccessStatusCode)
+                List<UserRolesDetails> userRoles = new List<UserRolesDetails>();
+                using (HttpClient client = new HttpClient())
                 {
-                    userRoles = result.Content.ReadAsAsync<List<UserRolesDetails>>().Result;
+                    var result = client.GetAsync("https://localhost:44307/api/userrolesn/UserRolesDetails").Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        userRoles = result.Content.ReadAsAsync<List<UserRolesDetails>>().Result;
+                    }
                 }
+                return View(userRoles);
             }
-            return View(userRoles);
+            else
+            {
+                return RedirectToAction("ErrorView", "HomePage");
+            }
+            
         }
 
         // GET: Userroles/Create
         public ActionResult InsertUserRole()
         {
-            UsersAndRolesViewModel usersAndRoles = new UsersAndRolesViewModel();
-            using (HttpClient client = new HttpClient())
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                var result = client.GetAsync("https://localhost:44307/api/UsersAndRoles").Result;
-                if(result.IsSuccessStatusCode)
+                UsersAndRolesViewModel usersAndRoles = new UsersAndRolesViewModel();
+                using (HttpClient client = new HttpClient())
                 {
-                    usersAndRoles = result.Content.ReadAsAsync<UsersAndRolesViewModel>().Result;
-                    SelectList UsersSL = new SelectList(usersAndRoles.Users, "UserID", "Firstname");
-                    TempData["UsersSL"] = UsersSL;
-                    SelectList RolesSL = new SelectList(usersAndRoles.Roles, "RoleId", "RoleName");
-                    TempData["RolesSL"] = RolesSL;
-                    TempData.Keep();
+                    var result = client.GetAsync("https://localhost:44307/api/UsersAndRoles").Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        usersAndRoles = result.Content.ReadAsAsync<UsersAndRolesViewModel>().Result;
+                        SelectList UsersSL = new SelectList(usersAndRoles.Users, "UserID", "Firstname");
+                        TempData["UsersSL"] = UsersSL;
+                        SelectList RolesSL = new SelectList(usersAndRoles.Roles, "RoleId", "RoleName");
+                        TempData["RolesSL"] = RolesSL;
+                        TempData.Keep();
+                    }
                 }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("ErrorView", "HomePage");
+            }
+           
         }
 
         // POST: Userroles/Create
         [HttpPost]
         public ActionResult InsertUserRole(UserRolesViewModel userRolesData)
         {
-            try
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                using (HttpClient client = new HttpClient())
+                try
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/userrolesn", userRolesData).Result;
-                    if (result.IsSuccessStatusCode)
+                    using (HttpClient client = new HttpClient())
                     {
-                        return RedirectToAction("index");
+                        var result = client.PostAsJsonAsync("https://localhost:44307/api/userrolesn", userRolesData).Result;
+                        if (result.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("index");
+                        }
                     }
+                    return View();
                 }
-                return View();
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("ErrorView", "HomePage");
             }
+            
         }
 
         // GET: Userroles/Edit/5
         public ActionResult UpdateUserRole(int id)
         {
-            UserRolesViewModel userRole = new UserRolesViewModel();
-            using (HttpClient client = new HttpClient())
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                var result = client.GetAsync("https://localhost:44307/api/userrolesn/" + id.ToString()).Result;
-                if (result.IsSuccessStatusCode)
+                UserRolesViewModel userRole = new UserRolesViewModel();
+                using (HttpClient client = new HttpClient())
                 {
-                    userRole = result.Content.ReadAsAsync<UserRolesViewModel>().Result;
-                    return View(userRole);
+                    var result = client.GetAsync("https://localhost:44307/api/userrolesn/" + id.ToString()).Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        userRole = result.Content.ReadAsAsync<UserRolesViewModel>().Result;
+                        return View(userRole);
+                    }
                 }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("ErrorView", "HomePage");
+            }
+            
         }
 
         // POST: Userroles/Edit/5
         [HttpPost]
         public ActionResult UpdateUserRole(UserRolesViewModel userRole)
         {
-            try
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                using (HttpClient client = new HttpClient())
+                try
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/userrolesn/" + userRole.Id.ToString(), userRole).Result;
-                    if (result.IsSuccessStatusCode)
+                    using (HttpClient client = new HttpClient())
                     {
-                        return RedirectToAction("index");
+                        var result = client.PutAsJsonAsync("https://localhost:44307/api/userrolesn/" + userRole.Id.ToString(), userRole).Result;
+                        if (result.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("index");
+                        }
                     }
+                    return View();
                 }
-                return View();
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("ErrorView", "HomePage");
             }
+            
         }
 
     }

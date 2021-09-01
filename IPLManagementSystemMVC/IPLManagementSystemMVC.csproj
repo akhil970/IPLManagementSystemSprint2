@@ -322,6 +322,7 @@
     <Content Include="Views\CustomerMVC\TicketsAndPrices.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\HomePage\ErrorView.cshtml" />
+    <Content Include="Views\HomePage\AboutsUS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

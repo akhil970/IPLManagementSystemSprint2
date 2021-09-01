@@ -35,67 +35,104 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: Users/Create
         public ActionResult InsertUser()
         {
-            return View();
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("ErrorView", "HomePage");
+            }
+            
         }
 
         // POST: Users/Create
         [HttpPost]
         public ActionResult InsertUser(UsersViewModel userdata)
         {
-            try
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                using (HttpClient client = new HttpClient())
+                try
                 {
-                    var result = client.PostAsJsonAsync("https://localhost:44307/api/usersn", userdata).Result;
-                    if (result.IsSuccessStatusCode)
+                    using (HttpClient client = new HttpClient())
                     {
-                        return RedirectToAction("index");
+                        var result = client.PostAsJsonAsync("https://localhost:44307/api/usersn", userdata).Result;
+                        if (result.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("index");
+                        }
                     }
+                    return View();
                 }
-                return View();
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("ErrorView", "HomePage");
             }
+            
         }
 
         // GET: Users/Edit/5
         public ActionResult UpdateUser(int id)
         {
-            UsersViewModel users = new UsersViewModel();
-            using (HttpClient client = new HttpClient())
+
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                var result = client.GetAsync("https://localhost:44307/api/usersn/" + id.ToString()).Result;
-                if (result.IsSuccessStatusCode)
+                UsersViewModel users = new UsersViewModel();
+                using (HttpClient client = new HttpClient())
                 {
-                    users = result.Content.ReadAsAsync<UsersViewModel>().Result;
-                    return View(users);
+                    var result = client.GetAsync("https://localhost:44307/api/usersn/" + id.ToString()).Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        users = result.Content.ReadAsAsync<UsersViewModel>().Result;
+                        return View(users);
+                    }
                 }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("ErrorView", "HomePage");
+            }
+            
         }
 
         // POST: Users/Edit/5
         [HttpPost]
         public ActionResult UpdateUser(UsersViewModel userData)
         {
-            try
+            var roleidofUser = int.Parse(Session["RoleId"].ToString());
+            if (roleidofUser == 1)
             {
-                using (HttpClient client = new HttpClient())
+                try
                 {
-                    var result = client.PutAsJsonAsync("https://localhost:44307/api/usersn/" + userData.UserID.ToString(), userData).Result;
-                    if (result.IsSuccessStatusCode)
+                    using (HttpClient client = new HttpClient())
                     {
-                        return RedirectToAction("index");
+                        var result = client.PutAsJsonAsync("https://localhost:44307/api/usersn/" + userData.UserID.ToString(), userData).Result;
+                        if (result.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("index");
+                        }
                     }
+                    return View();
                 }
-                return View();
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("ErrorView", "HomePage");
             }
+            
         }
     }
 }
