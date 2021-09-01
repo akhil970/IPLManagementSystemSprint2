@@ -52,6 +52,7 @@ namespace IPLManagementSystemMVC.Controllers
                             var roleId = roleData.Select(e => e.Roleid).FirstOrDefault();
                             if(roleId == 0 | roleData is null)
                             {
+                                Session["Username"] = nameOfUser;
                                 return RedirectToAction("Customer");
                             }
                             else 
@@ -87,11 +88,10 @@ namespace IPLManagementSystemMVC.Controllers
             return View();
         }
         //For Logout
-        public ActionResult Logout()
+        public RedirectResult Logout()
         {
-            //as i have store a session, on clicking logout sessions present get cleared and redirects to home page
             Session.Clear();
-            return RedirectToAction("Index", "HomePage");
+            return Redirect("https://localhost:44349/HomePage/Index");
         }
 
         //Customer Registration Part

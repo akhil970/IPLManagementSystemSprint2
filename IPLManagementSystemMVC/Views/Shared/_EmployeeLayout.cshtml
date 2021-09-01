@@ -33,29 +33,31 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md fixed-top" style="padding: 0px; background-color: darkblue; font-size: medium">
+    <nav class="navbar navbar-expand-md fixed-top" style="font-weight:bold; background-color: darkblue; font-size: medium">
         <a href="#" style="background-color:darkblue"><img style="height:50px; width:60px" src="~/Images/Logos/ipl logo 2.jpeg" /></a>
         <!--For menu items -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <a href="#" class="nav-item nav-link">Home</a>
             <a href="#" class="nav-item nav-link">About Us</a>
         </div>
-        <div class="collapse navbar-collapse" style="float:right" id="navbarCollapse">
+        <h3  style="font-weight:bold;color:azure;padding-left:250px">IPL Website Employee Section </h3>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
             @if (Session["Username"] != null)
-            {
-                <h4 style="color:white">Hello @Session["Username"]</h4>
-                @Html.ActionLink("Logout", "Logout", "HomePage")
-            }
-
+             {
+                <div>
+                    <h4 style="color:white;font-style:italic;padding-left:400px;">Hello, @Session["Username"]</h4>
+                    <a href="@Url.Action("Logout", "HomePage")" style="font-weight: bold; color: white; padding-left: 400px;">Logout</a>
+                </div>
+             }
         </div>
 
     </nav>
     <!--Body Row-->
     <div class="row">
-        <div class="col-md-3">
-            <div style="background-color: lightblue; margin: 10px; height: 600px; float: left; font-size: medium">
-                <h4>Operations Here!</h4>
-                <div style="padding:5px;font-size:20px">
+        <div class="col-md-2">
+            <div style=" margin-left:1px; margin-top: 10px; background-color:linen ;height: 600px; float: left; font-size: medium">
+                <h2>Operations Here!</h2>
+                <div style="padding:5px;font-size:20px;font-weight:bold;">
                     <a href="@Url.Action("Index","TeamMVC")">Teams</a><br />
                     <a href="@Url.Action("Index","SpecialityMVC")">Speciality</a><br />
                     <a href="@Url.Action("Index","PlayerMVC")">Players</a><br />
@@ -70,8 +72,8 @@
                 </div>
                 </div>
             </div>
-        <div class="col-md-6">
-            <div style="font-size:medium; height: 400px;">
+        <div class="col-md-9"style="float:left;margin-top:20px;">
+            <div style="font-size:medium">
                 @RenderBody()
             </div>
         </div>

@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md fixed-top" style="padding: 0px; background-color: darkblue; font-size: medium">
+    <nav class="navbar navbar-expand-md fixed-top" style="padding-left: 10px; background-color: darkblue; font-size: medium">
         <a href="#" style="background-color:darkblue"><img style="height:50px; width:60px" src="~/Images/Logos/ipl logo 2.jpeg" /></a>
         <!--For menu items -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -57,14 +57,14 @@
             @if (Session["Username"] != null)
              {
                 <div>
-                     <h4 style="color:white;font-style:italic;padding-left:400px;">Hello, @Session["Username"]</h4>
-                     <h4 style="font-weight: bold; padding-left: 450px">@Html.ActionLink("Logout", "Logout", "HomePage", new { style = "color: white;" })</h4>
+                    <h4 style="color:white;font-style:italic;padding-left:400px;">Hello, @Session["Username"]</h4>
+                    <a href="@Url.Action("Logout", "HomePage")" style="font-weight: bold; color: white; padding-left: 400px;">Logout</a>
                 </div>
              }
         </div>
     </nav>
     <!--Body Row-->
-        <div class="col-md-12">
+        <div class="col-md-12" style="margin-top: 0; margin-bottom: 0; margin-right: auto; margin-left: auto; ">
             <div style="font-size:medium; height: 400px;">
                 @RenderBody()
             </div>

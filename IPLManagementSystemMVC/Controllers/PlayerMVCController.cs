@@ -41,21 +41,6 @@ namespace IPLManagementSystemMVC.Controllers
 
         public ActionResult InsertPlayer()
         {
-            AllTableJoinsMVC teamsAndSpeciality = new AllTableJoinsMVC();
-            using (HttpClient client = new HttpClient())
-            {
-                var result = client.GetAsync("https://localhost:44307/api/Players/TeamSpeciality").Result;
-                if(result.IsSuccessStatusCode)
-                {
-                    teamsAndSpeciality = result.Content.ReadAsAsync<AllTableJoinsMVC>().Result;
-                    SelectList TeamSL = new SelectList(teamsAndSpeciality.Team, "Id", "Name");
-                    TempData["TeamSL"] = TeamSL;
-                    SelectList SpecialitySL = new SelectList(teamsAndSpeciality.Speciality, "Id", "Description");
-                    TempData["SpecialitySL"] = SpecialitySL;
-                    TempData.Keep();
-                }
-            }
-            TempData.Keep();
             return View();
         }
 
@@ -65,6 +50,7 @@ namespace IPLManagementSystemMVC.Controllers
         {
             try
             {
+                
                 using (HttpClient client = new HttpClient())
                 {
                     var result = client.PostAsJsonAsync("https://localhost:44307/api/players", player).Result;

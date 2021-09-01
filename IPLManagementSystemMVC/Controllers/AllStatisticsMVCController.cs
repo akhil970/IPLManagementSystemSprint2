@@ -39,21 +39,9 @@ namespace IPLManagementSystemMVC.Controllers
         //To insert data into statistics
         public ActionResult InsertStatistics()
         {
-            List<Team> teamName = new List<Team>();
-            using (HttpClient client = new HttpClient())
-            {
-                var result = client.GetAsync("https://localhost:44307/api/AllStatistics/Teamname").Result;
-                if(result.IsSuccessStatusCode)
-                {
-                    teamName = result.Content.ReadAsAsync<List<Team>>().Result;
-                    SelectList TeamNameSL = new SelectList(teamName, "Id", "Name");
-                    TempData["TeamNameSL"] = TeamNameSL;
-                    TempData.Keep();
-                }
-            }
-            TempData.Keep();
             return View();
         }
+
         [HttpPost] //works when submit button is clicked
         public ActionResult InsertStatistics(AllStatistic stats)
         {
@@ -70,7 +58,6 @@ namespace IPLManagementSystemMVC.Controllers
 
         public ActionResult UpdateStatistics(int id)
         {
-            TempData.Keep();
             AllStatistic stats = new AllStatistic();
             using (HttpClient client = new HttpClient())
             {
@@ -86,7 +73,6 @@ namespace IPLManagementSystemMVC.Controllers
         [HttpPost]
         public ActionResult UpdateStatistics(AllStatistic stats)
         {
-            //TempData.Keep();
             using (HttpClient client = new HttpClient())
             {
                 var result = client.PutAsJsonAsync("https://localhost:44307/api/allstatistics/" + stats.Id.ToString(), stats).Result;

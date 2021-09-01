@@ -36,10 +36,14 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [Route("api/Players/TeamSpeciality")]
         public IHttpActionResult GetTeamSpeciality()
         {
-            AllTablesListData teamsAndSpeciality = new AllTablesListData();
-            teamsAndSpeciality.Team = db.Teams.ToList();
-            teamsAndSpeciality.Speciality = db.Specialities.ToList();
-            return Ok(teamsAndSpeciality);
+            
+            List<Speciality> spec = new List<Speciality>();
+            //AllTablesListData teamsAndSpeciality = new AllTablesListData();
+            //teamsAndSpeciality.Team = db.Teams.ToList();
+            //teamsAndSpeciality.Speciality = db.Specialities.ToList();
+            spec = db.Specialities.ToList();
+            
+            return Ok(spec);
         }
 
         // GET: api/Players/5

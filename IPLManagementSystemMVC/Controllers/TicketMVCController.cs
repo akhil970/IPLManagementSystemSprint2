@@ -40,19 +40,6 @@ namespace IPLManagementSystemMVC.Controllers
 
         public ActionResult InsertTicket()
         {
-            AllTableJoinsMVC tcs = new AllTableJoinsMVC();
-            using (HttpClient client = new HttpClient())
-            {
-                var result = client.GetAsync("https://localhost:44307/api/Tickets/TCandMatches").Result;
-                if(result.IsSuccessStatusCode)
-                {
-                    tcs = result.Content.ReadAsAsync<AllTableJoinsMVC>().Result;
-                    SelectList TCSL = new SelectList(tcs.TicketCategory, "Id", "Name");
-                    TempData["TCSL"] = TCSL;
-                    TempData.Keep();
-                }
-            }
-            TempData.Keep();
             return View();
         }
 
@@ -60,7 +47,6 @@ namespace IPLManagementSystemMVC.Controllers
         [HttpPost]
         public ActionResult InsertTicket(Ticket ticket)
         {
-            TempData.Keep();
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -82,7 +68,6 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: TicketMVC/Edit/5
         public ActionResult UpdateTicket(int id)
         {
-            TempData.Keep();
             Ticket ticket = new Ticket();
             using (HttpClient client = new HttpClient())
             {
@@ -102,7 +87,6 @@ namespace IPLManagementSystemMVC.Controllers
         {
             try
             {
-                TempData.Keep();
                 using (HttpClient client = new HttpClient())
                 {
                     var result = client.PutAsJsonAsync("https://localhost:44307/api/tickets/" + ticket.Id.ToString(), ticket).Result;

@@ -40,18 +40,6 @@ namespace IPLManagementSystemMVC.Controllers
         // GET: ScheduleMVC/Create
         public ActionResult InsertSchedule()
         {
-            List<Venue> venue = new List<Venue>();
-            using(HttpClient client = new HttpClient())
-            {
-                var result = client.GetAsync("https://localhost:44307/api/Schedules/Venuename").Result;
-                if(result.IsSuccessStatusCode)
-                {
-                    venue = result.Content.ReadAsAsync<List<Venue>>().Result;
-                    SelectList VenueSL = new SelectList(venue, "Id", "Location");
-                    TempData["VenueSL"] = VenueSL;
-                    TempData.Keep();
-                }
-            }
             return View();
         }
 
