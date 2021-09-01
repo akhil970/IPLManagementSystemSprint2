@@ -52,7 +52,7 @@
         @Html.DisplayFor(modelItem => item.ScheduleId)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.MatchPhoto)
+        <img src="@Html.DisplayFor(modelItem => item.MatchPhoto)" height="100" width="100"/>
     </td>
     <td>
         @Html.ActionLink("Edit", "UpdateMatch", new { id = item.Id }) |

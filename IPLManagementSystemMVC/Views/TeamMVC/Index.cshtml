@@ -45,7 +45,7 @@
         @Html.DisplayFor(modelItem => item.Franchise_Owners)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Logo_Image)
+        <img src="@Html.DisplayFor(modelItem => item.Logo_Image)" height="150" width="150"/>
     </td>
     <td>
         @Html.ActionLink("Edit", "UpdateTeam", new { id = item.Id }) |
