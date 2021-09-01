@@ -21,7 +21,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Photo)
                 </th>
-                <th></th>
+
             </tr>
 
             @foreach (var item in Model)
@@ -39,7 +39,7 @@
                         @Html.DisplayFor(modelItem => item.PlayerRole)
                      </td>
                      <td>
-                        <img src="@Html.DisplayFor(modelItem => item.Photo)" height="200" width="200"/>
+                        <img src="@Html.DisplayFor(modelItem => item.Photo)" height="150" width="150"/>
                      </td>
                 </tr>
              }

@@ -17,6 +17,7 @@ namespace IPLManagementSystemWEBAPI.Controllers
         [ResponseType(typeof(usp_customer_teamnames_Result))]
         public IHttpActionResult GetTeamspresent()
         {
+            //Teams present in the data base
             var teamsData = db.usp_customer_teamnames();
             return Ok(teamsData);
         }
@@ -26,7 +27,11 @@ namespace IPLManagementSystemWEBAPI.Controllers
         public IHttpActionResult GetPlayers(int id)
         {
             var playersData = db.usp_customer_players_view(id);
-            return Ok(playersData);
+            if(playersData != null)
+            {
+                return Ok(playersData);
+            }
+            return BadRequest(ModelState);
         }
 
         [Route("api/Customer/CompletedMatches")]
