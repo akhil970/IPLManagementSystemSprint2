@@ -20,7 +20,7 @@ namespace IPLManagementSystemMVC.Controllers
         {
             return View();
         }
-        
+        [OutputCache(Duration = 60, VaryByParam = "none")]
         [HttpPost]
         public ActionResult Login(LoginViewModel login)
         {
@@ -77,13 +77,13 @@ namespace IPLManagementSystemMVC.Controllers
                     }
                     else
                     {
-                        //ViewBag.Message("Invalid Password");
+                        
                         return View();
                     }
                 }
                 else
                 {
-                    //ViewBag.Message("Invalid Username");
+                   
                     return View();
                 }
                 
@@ -145,7 +145,6 @@ namespace IPLManagementSystemMVC.Controllers
         }
         public ActionResult ErrorView()
         {
-            Session.Clear();
             return View();
         }
         public ActionResult AboutsUS()

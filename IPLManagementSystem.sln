@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPLManagementSystemWEBAPI",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPLManagementSystemMVC", "IPLManagementSystemMVC\IPLManagementSystemMVC.csproj", "{1973A1B1-36D5-4E02-BE03-4125038F1D90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPLManagementSystemUnitTestWEBAPI", "IPLManagementSystemUnitTestWEBAPI\IPLManagementSystemUnitTestWEBAPI.csproj", "{FC867C84-3CA8-41F4-B571-BBB42DA364D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPLManagementSystemUnitTestMVC", "IPLManagementSystemUnitTestMVC\IPLManagementSystemUnitTestMVC.csproj", "{2C26B927-AC0A-41AB-9FCD-BB84712E41C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{1973A1B1-36D5-4E02-BE03-4125038F1D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1973A1B1-36D5-4E02-BE03-4125038F1D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1973A1B1-36D5-4E02-BE03-4125038F1D90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC867C84-3CA8-41F4-B571-BBB42DA364D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC867C84-3CA8-41F4-B571-BBB42DA364D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC867C84-3CA8-41F4-B571-BBB42DA364D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC867C84-3CA8-41F4-B571-BBB42DA364D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C26B927-AC0A-41AB-9FCD-BB84712E41C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C26B927-AC0A-41AB-9FCD-BB84712E41C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C26B927-AC0A-41AB-9FCD-BB84712E41C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C26B927-AC0A-41AB-9FCD-BB84712E41C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

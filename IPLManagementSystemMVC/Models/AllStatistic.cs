@@ -11,12 +11,12 @@ namespace IPLManagementSystemMVC.Models
         [Required(ErrorMessage = "Enter Statistics ID")]
         public int Id { get; set; }
 
-        [Range(1,10,ErrorMessage ="Enter Valid Team ID")]
+        [Range(1,int.MaxValue,ErrorMessage ="Enter Valid Team ID")]
         [Required(ErrorMessage = "Enter Team ID")]
         [Display(Name = "Team ID")]
         public int TeamId { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Enter Numbers Only")]
+        [Range(0, int.MaxValue, ErrorMessage = "Enter Numbers Only")]
         [Required(ErrorMessage = "Enter Total Played Matches")]
         [Display(Name = "Played")]
         public Nullable<int> Played { get; set; }
